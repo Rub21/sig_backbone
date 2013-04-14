@@ -3,6 +3,13 @@ var RecursoView = Backbone.View.extend({
     /*el: $("#detail"),
      className: "sig_popover",*/
     template: $("#recursoTemplate").html(),
+    events: {
+        "click #select_hotel": "select_hotel",
+        "click #select_restaurant": "select_restaurant",
+        "click #select_transporte": "select_transporte",
+        "click #select_complementario": "select_complementario"
+
+    },
     initialize: function() {
         _.bindAll(this);
         this.collection = new Servicios();
@@ -58,25 +65,44 @@ var RecursoView = Backbone.View.extend({
                 map.ui.zoombox.add();
                 map.ui.hash.add();
                 interaction.formatter(function(feature) {
-                    var o = '<h3 class="popover-geo-title">' + feature.nombre + '</h3>' +
-                            '<p>' + feature.descripcion.substring(0, 100) + '...</p>' +
-                            '<div class="well-toltip">' +
-                            '<img style="height: 120px; width:120px;   margin-right: 3px;" src="' + feature.imagenes[0].url + '">' +
-                            '<img style="height: 120px; width:120px;" src="' + feature.imagenes[1].url + '">' +
-                            '</div>';
-                    var a_button = '';
-                    var a = feature.clase.replace(/\s/g, "");
-
-                    a_button = '<a  role="button" class="btn"  href="#detail" onclick="call_detail_hotel(\'' + feature.idproducto + '\')"> Más Detalle</a>';
-
-                    return o + a_button;
+                    var o = '<h5 class="popover-geo-title">' + feature.nombre + '</h5>' +
+                            '<p>' + feature.descripcion.substring(0, 100) + '...</p>';
+                    return o;
                 });
             }
             ;
         }, 3000);
 
+    },
+    select_hotel: function() {
+
+        var scroll_to = document.getElementById('servicios');
+        scroll_to.scrollIntoView();
+
+        /* markerLayer.filter(function(features) {
+         var clase = features.clase.replace(/\s/g, "");
+         if (clase === 'Hotel') {
+         return true;
+         }
+         });*/
+
+    },
+    select_restaurant: function() {
+        var scroll_to = document.getElementById('servicios');
+        scroll_to.scrollIntoView();
+    },
+    select_transporte: function() {
+        var scroll_to = document.getElementById('servicios');
+        scroll_to.scrollIntoView();
+    },
+    select_complementario: function() {
+        var scroll_to = document.getElementById('servicios');
+        scroll_to.scrollIntoView();
     }
 });
+
+
+
 /*
  //define master view
  var DirectoryView = Backbone.View.extend({

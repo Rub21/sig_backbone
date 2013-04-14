@@ -13,7 +13,7 @@
         <div id="recursos"></div>
 
         <div id="contacts"></div>
-        
+
 
 
 
@@ -191,7 +191,7 @@
 
 
         <script id="recursoTemplate" type="text/template" >          
-<div id="popover_recurso">
+            <div id="popover_recurso">
     <div class="content well">
         <a name="up"></a><div class="navbar ">
             <div class="img_popover"> <img src="http://dl.dropbox.com/u/43116811/icon-tur/<%=properties['marker-symbol'] %>-l.png" alt=""></div>
@@ -201,19 +201,19 @@
                     </a>
                     <ul class="nav pull-right" >
                         <li>
-                            <a href="#hotel" ><i class="icon-dormir-black"></i>Donde Dormir 
+                            <a href="#hotel" id="select_hotel" ><i class="icon-dormir-black"></i>Donde Dormir 
                             </a>
                         </li>
                         <li>
-                            <a href="#restaurant"><i class="icon-comer-black"></i>Donde Comer
+                            <a href="#restaurant" id="select_restaurant"><i class="icon-comer-black"></i>Donde Comer
                             </a>
                         </li>
                         <li>
-                            <a href="#transporte" ><i class="icon-transporte-black"></i>Como viajar
+                            <a href="#transporte" id="select_transporte"><i class="icon-transporte-black"></i>Como viajar
                             </a>
                         </li>
                         <li>
-                            <a href="#complementario" ><i class="icon-dormir-black"></i>Otros Servicios
+                            <a href="#complementario" id="select_complementario" ><i class="icon-dormir-black"></i>Otros Servicios
                             </a>
                         </li>
                         <li>
@@ -329,16 +329,30 @@
     </div>
     <div class="select_servicios">
         <ul class="dropdown-menu">
-            <li><a id="select_hotel" href="#hotel"><i class="icon-hand-right"></i>Donde Dormir</a></li>
-            <li><a id="select_restaurant"href="#restaurant"><i class="icon-hand-right"></i>Donde Comer</a></li>
-            <li><a id="select_transporte" href="#transporte"><i class="icon-hand-right"></i>Como Viajar</a></li>
-            <li><a id="select_complementario" href="#complementario"><i class="icon-hand-right"></i>Otros Servicios</a></li>
+            <li><a id="select_hotel" href="#hotel">
+                    <i class="icon-hand-right"></i>Donde Dormir</a>
+            </li>
+            <li><a id="select_restaurant"href="#restaurant">
+                    <i class="icon-hand-right"></i>Donde Comer</a>
+            </li>
+            <li><a id="select_transporte" href="#transporte">
+                    <i class="icon-hand-right"></i>Como Viajar</a>
+            </li>
+            <li><a id="select_complementario" href="#complementario">
+                    <i class="icon-hand-right"></i>Otros Servicios</a>
+            </li>
             <li class="divider"></li>
-            <li><a id="select_todos" href="#todos"><i class="icon-hand-right"></i>Todos</a></li>
+            <li><a id="select_todos" href="#todos">
+                    <i class="icon-hand-right"></i>Todos</a>
+            </li>
         </ul>
     </div>
 </div>
-<div class="modal-footer"><button type="button" data-dismiss="modal" class="btn btn-primary" id="butoon_close">Close</button></div>
+<div class="modal-footer">
+    <button type="button" data-dismiss="modal" class="btn btn-primary" id="butoon_close">Close
+    </button>
+</div>
+<a href="#up" class="ancla"></a>
         </script>
 
 

@@ -67,21 +67,22 @@ Mainview = Backbone.View.extend({
 
     },
     detail: function(e) {
-        $('#detail').empty();
+        $('#detail').empty();        
         var idproducto = $(e.currentTarget).attr('id');
+        
         var found_recurso = this.collection.find(function(item) {
-//console.log('Checking values', item, item.get('idproducto'), idproducto);
             return item.get('idproducto') === idproducto;
         });
         var recursoView = new RecursoView({
             model: found_recurso
         });
+        
         $('#backdrop').fadeIn(200);
         $('#detail').show(200);
         $('#close').show(200);
-        console.log(recursoView.render().el);
+       // console.log(recursoView.render().el);
         $('#detail').append(recursoView.render().el);
-        //this.$el.append(recursoView.render().el);
+
     },
     close: function() {
         $('#backdrop').fadeOut(200);

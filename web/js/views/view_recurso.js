@@ -1,5 +1,5 @@
-//define individual recurso view
-var RecursoView = Backbone.View.extend({
+//define individual recurso view over Map
+var RecursoView_ForMap = Backbone.View.extend({
     /*el: $("#detail"),
      className: "sig_popover",*/
     template: $("#recursoTemplate").html(),
@@ -103,32 +103,46 @@ var RecursoView = Backbone.View.extend({
 
 
 
-/*
- //define master view
- var DirectoryView = Backbone.View.extend({
- el: $("#recurso"),
- initialize: function() {
- this.collection = new Recursos();
- this.collection.bind("reset", this.render, this);
- this.collection.fetch();
- 
- console.log(this.collection);
- this.render();
- },
- render: function() {
- var that = this;
- _.each(this.collection.models, function(item) {
- that.renderRecurso(item);
- }, this);
- },
- renderRecurso: function(item) {
- var recursoView = new RecursoView({
- model: item
- });
- this.$el.append(recursoView.render().el);
- }
- 
- });*/
+
+
+//define individual for grid
+var RecursoView_ForGrid = Backbone.View.extend({
+    tagName: "li",
+    className: "span3",
+    template: $("#grid_recursoTemplate").html(),
+    render: function() {
+        var tmpl = _.template(this.template);
+        $(this.el).html(tmpl(this.model.toJSON()));
+       // console.log(this);
+        return this;
+    }
+});
+
+//define individual recurso view over Map
+var Grid_RecursosView = Backbone.View.extend({
+    el: $("#gid_recursos"),
+    initialize: function() {
+        this.collection = new Recursos();
+        this.collection.bind("reset", this.render, this);
+        this.collection.fetch();
+        //console.log(this.collection);
+        this.render();
+    },
+    render: function() {
+        var that = this;
+        _.each(this.collection.models, function(item) {
+            that.renderRecurso(item);
+        }, this);
+    },
+    renderRecurso: function(item) {
+        var recursoView = new RecursoView_ForGrid({
+            model: item
+        });
+
+        this.$el.append(recursoView.render().el);
+    }
+
+});
 
 
 

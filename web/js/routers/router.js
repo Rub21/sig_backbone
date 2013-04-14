@@ -3,8 +3,9 @@
 var AppRouter = Backbone.Router.extend({
     routes: {
         "": "inicio",
-        "detail/:id": "recursodetails"
-                //"detail": "recursodetails"
+        "detail/:id": "recursodetails",
+        "recursos": "recursos"
+
     },
     inicio: function() {
         this.mainview = new Mainview();
@@ -16,24 +17,29 @@ var AppRouter = Backbone.Router.extend({
     },
     recursodetails: function(id) {
         /*
-        this.mainview = new Mainview();        
-        var idproducto = id.substring(1, 10);      
-        //console.log(this.mainview.collection);
-        alert(idproducto)
-        $('#detail').empty();
-        var found_recurso = this.mainview.collection.find(function(item) {            
-            return item.get('idproducto') === idproducto;
-        });
-        
-        var recursoView = new RecursoView({
-            model: found_recurso
-        });
-        
-        $('#backdrop').fadeIn(200);
-        $('#detail').show(200);
-        $('#close').show(200);
-        //console.log(recursoView.render().el);
-        $('#detail').append(recursoView.render().el);*/
+         this.mainview = new Mainview();        
+         var idproducto = id.substring(1, 10);      
+         //console.log(this.mainview.collection);
+         alert(idproducto)
+         $('#detail').empty();
+         var found_recurso = this.mainview.collection.find(function(item) {            
+         return item.get('idproducto') === idproducto;
+         });
+         
+         var recursoView = new RecursoView({
+         model: found_recurso
+         });
+         
+         $('#backdrop').fadeIn(200);
+         $('#detail').show(200);
+         $('#close').show(200);
+         //console.log(recursoView.render().el);
+         $('#detail').append(recursoView.render().el);*/
+    },
+    recursos: function() {
+//alert('recursos');
+        var grid_recursoview = new Grid_RecursosView();
+
     }
 });
 

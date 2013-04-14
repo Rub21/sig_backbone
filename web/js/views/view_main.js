@@ -68,15 +68,15 @@ Mainview = Backbone.View.extend({
     },
     detail: function(e) {
         $('#detail').empty();        
-        var idproducto = $(e.currentTarget).attr('id');
-        
+        var idproducto = $(e.currentTarget).attr('id');        
         var found_recurso = this.collection.find(function(item) {
             return item.get('idproducto') === idproducto;
         });
-        var recursoView = new RecursoView({
-            model: found_recurso
-        });
         
+        
+        var recursoView = new RecursoView_ForMap({
+            model: found_recurso
+        });        
         $('#backdrop').fadeIn(200);
         $('#detail').show(200);
         $('#close').show(200);

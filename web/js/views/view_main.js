@@ -31,39 +31,39 @@ Mainview = Backbone.View.extend({
             lon: -74.22565
         }, 15);
         map.setZoomRange(0, 18);
-        
-         markerLayer = mapbox.markers.layer().features(features);
-         markerLayer.factory(function(m) {         
-         var elem = simplestyle_factory_rub(m);
-         MM.addEvent(elem, 'click', function(e) {
-         map.ease.location({
-         lat: m.geometry.coordinates[1],
-         lon: m.geometry.coordinates[0]
-         }).zoom(map.zoom()).optimal();
-         });
-         return elem;
-         });
-         interaction = mapbox.markers.interaction(markerLayer);
-         map.addLayer(markerLayer);
-         map.ui.zoomer.add();
-         map.ui.zoombox.add();
-         map.ui.hash.add();
-         interaction.formatter(function(feature) {
-         var o = '<h5 class="popover-geo-title">' + feature.nombre + '</h5>' +
-         '<p>' + feature.descripcion.substring(0, 100) + '...</p>' +
-         '<div class="well-toltip">' +
-         '<img style="height: 120px; width:120px;   margin-right: 3px;" src="' + feature.imagenes[0].url + '">' +
-         '<img style="height: 120px; width:120px;" src="' + feature.imagenes[1].url + '">' +
-         '</div>';
-         var a_button = '';
-         var a = feature.clase.replace(/\s/g, "");
-         if (a == 'RecursoTurístico') {
-         a_button = '<a  id="' + feature.idproducto + '" role="button" class="btn_detail btn"  href="#detail/:' + feature.idproducto + '"> Más Detalle</a>';
-         }
-         return o + a_button;
-         });
-         
-         $('#map').removeClass('loading');         
+
+        markerLayer = mapbox.markers.layer().features(features);
+        markerLayer.factory(function(m) {
+            var elem = simplestyle_factory_rub(m);
+            MM.addEvent(elem, 'click', function(e) {
+                map.ease.location({
+                    lat: m.geometry.coordinates[1],
+                    lon: m.geometry.coordinates[0]
+                }).zoom(map.zoom()).optimal();
+            });
+            return elem;
+        });
+        interaction = mapbox.markers.interaction(markerLayer);
+        map.addLayer(markerLayer);
+        map.ui.zoomer.add();
+        map.ui.zoombox.add();
+        map.ui.hash.add();
+        interaction.formatter(function(feature) {
+            var o = '<h5 class="popover-geo-title">' + feature.nombre + '</h5>' +
+                    '<p>' + feature.descripcion.substring(0, 100) + '...</p>' +
+                    '<div class="well-toltip">' +
+                    '<img style="height: 120px; width:120px;   margin-right: 3px;" src="' + feature.imagenes[0].url + '">' +
+                    '<img style="height: 120px; width:120px;" src="' + feature.imagenes[1].url + '">' +
+                    '</div>';
+            var a_button = '';
+            var a = feature.clase.replace(/\s/g, "");
+            if (a == 'RecursoTurístico') {
+                a_button = '<a  id="' + feature.idproducto + '" role="button" class="btn_detail btn"  href="#detail/:' + feature.idproducto + '"> Más Detalle</a>';
+            }
+            return o + a_button;
+        });
+
+        $('#map').removeClass('loading');
 
     },
     detail: function(e) {

@@ -16,5 +16,12 @@ var Servicio = Backbone.Model.extend({
         this.attributes.properties['marker-size'] = 'large';
         this.attributes.properties['marker-symbol'] = clase;
         this.attributes.properties['marker-color'] = '#000000';
+        //cambia de icono si es un servico complementario
+        if (clase === 'complementario') {
+            var type_icon = this.attributes.tipo.toLowerCase().replace(/\s/g, "");
+            this.attributes.properties['marker-symbol'] = type_icon;
+        }
+
+
     }
 });

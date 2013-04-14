@@ -17,7 +17,6 @@ var RecursoView = Backbone.View.extend({
         return this;
     },
     mapservicios: function(f) {
-
         //console.log(this.model.attributes.geometry);
         // console.log(this.collection.toJSON());
         var lat = this.model.attributes.geometry.coordinates[1];
@@ -53,7 +52,6 @@ var RecursoView = Backbone.View.extend({
                     });
                     return elem;
                 });
-
                 interaction = mapbox.markers.interaction(markerLayer);
                 map.addLayer(markerLayer);
                 map.ui.zoomer.add();

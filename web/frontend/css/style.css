@@ -1,0 +1,600 @@
+body {
+  background-color: #fff;
+  font: 14px/20px Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0; 
+  }
+
+
+/*-----------------------------------
+  Typography
+-------------------------------------*/
+
+/*@font-face {
+  font-family: 'AlternateGothicLTNo3Regular';
+  src: url('../fonts/alternate_gothic-webfont.eot');
+  src: url('../fonts/alternate_gothic-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/alternate_gothic-webfont.woff') format('woff'),
+    url('../fonts/alternate_gothic-webfont.ttf') format('truetype'),
+    url('../fonts/alternate_gothic-webfont.svg#AlternateGothicLTNo3Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  }*/
+
+
+
+
+.marker-popup h3{
+    color: #000;
+  }
+.marker-popup p{
+    font-size: 11px;
+    margin:2px;
+  }
+
+
+a {
+  color: #fff;
+  text-decoration: none;
+  }
+
+/*-----------------------------------
+  Masthead + Header
+-------------------------------------*/
+#masthead {
+  background-color: #F5F5F5;
+  height: 82px;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  z-index:2;
+  }
+
+#header {
+  height: 42px;
+  width: 100%;
+  -moz-box-shadow: 0 0 5px #999;
+  -webkit-box-shadow: 0 0 5px #999;
+  box-shadow: 0 0 5px #999;
+  -moz-transition: top 0.5s ease;
+  -o-transition: top 0.5s ease;
+  -webkit-transition: top 0.5s ease;
+  transition: top 0.5s ease;
+  }
+
+
+/*-----------------------------------
+Map
+-------------------------------------*/
+
+#map {
+  background-color: #2D2A2A;
+  height: 580px;
+  position:absolute; 
+  top:80px; 
+  width:100%; 
+  }
+
+
+.map_recurso{
+position:relative; 
+}
+
+#map_servicios{
+position:relative;
+/*z-index: 45;*/
+width:100%;
+height:550px;
+}
+
+
+
+
+/*-----------------------------------
+loading gif
+-------------------------------------*/
+.loading {
+  position: relative;
+  }
+
+.loading:after {
+  background: url(../img/ajax-loader.gif) no-repeat;
+  content: "Cargando...";
+  color: #666;
+  left: 50%;  
+  height: 16px;
+  line-height: 16px;
+  margin-top: -8px;
+  margin-left: -40px;
+  position: absolute;
+  font-size: 12px;
+  top: 50%; 
+  text-indent: 26px;
+  width: 80px;
+  }
+
+#map.loading:after {
+  background-color: #333;
+  background-color: rgba(0,0,0,0.75);
+  background-image: url(../img/ajax-loader-rev.gif);
+  color: #fff;
+  padding: 20px;
+  background-position: 20px 50%;
+  border-radius: 10px;
+  z-index: 4;
+  position: absolute;
+  }
+
+
+/*-----------------------------------
+footer
+-------------------------------------*/
+
+#footer{
+  background-color: #2B2E31;
+  border-top: 5px solid #ddd;
+  height : 150px;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  padding-top: 80px;
+  right: 0;
+  top: 670px;
+  width: 100%; 
+  z-index: 6;
+  }
+
+#footer .center {
+  background: #2B2E31;
+  height: 40px;  
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  top:0;  
+  right: 0;
+  width: 1100px;
+  z-index: 99;
+  }
+
+.center  a{
+  margin-top: 7px;
+  margin-left: 15px;
+  }
+
+#footer .center .separator{
+  background: url("../img/ftr-separator.png") no-repeat ;
+  background-position:center;
+  display: block;
+  font-size: 0;
+  margin-top: 5px;
+  /*text-align: center;*/
+  }
+
+#footer .center span{  
+  float: left;
+  margin-top: 25px;
+  }
+
+#footer .center img{  
+  float: right;
+  }
+
+
+.popover_overdetail {
+  padding: 10px 20px;
+  text-align: justify;
+  overflow: auto;
+  overflow-x: hidden;
+  -moz-border-radius:    3px;
+  -webkit-border-radius: 3px;
+  border-radius:         3px;
+  -moz-box-shadow:    0px 1px 10px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 0px 1px 10px rgba(0,0,0,0.5);
+  box-shadow:         0px 1px 10px rgba(0,0,0,0.5);
+  background: #ff0000;
+  display: none;
+  position: fixed;
+  top: 10%;
+  left: 0;
+  right: 0;
+  margin-top: 0px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 0; 
+  z-index: 21;
+  width: 70%;
+  height: 70%;
+  }
+
+
+
+
+/*-----------------------------------
+Close
+-------------------------------------*/
+#close {
+  display: none;
+  position: fixed;
+  width: 25px;
+  height: 25px;
+  top: 10px;
+  margin-top: -10px;
+  right: 5%;
+  margin-left: 255px;
+  border: none;
+  background: #333;
+  border-radius: 15px;
+  color: #fff;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
+  text-shadow: 0 1px 0 #000;
+  z-index: 12;
+  }
+
+#close:hover { background: #444; }
+
+
+#backdrop {
+  display: none;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: #333;
+  opacity: 0.8;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+  z-index: 10;
+  }
+
+/*-----------------------------------
+Autocomplete
+-------------------------------------*/
+input.fetching {
+  background: lightgrey;
+}
+
+#last-selection {
+  font-size: 10px;
+  color: green;
+}
+
+p.warning {
+  color: red;
+}
+
+.group h3{
+  color: #ff0000;
+}
+
+.result {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: none;
+}
+
+
+
+/**********************************************/
+/*
+.better-autocomplete,
+.result {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: none;
+}
+
+.better-autocomplete {
+  text-align: left;
+  font-family: 'Lucida Grande', Helvetica, Arial, Verdana, sans-serif;
+  overflow: auto;
+  cursor: default;
+  background: white;
+  border-bottom: 1px solid #bfbfbf;
+}*/
+
+/* Groups */
+
+.group {
+  position: relative;
+  padding: 0px;
+  text-align: center;
+  background: #e7e7e7;
+  border-color: #bfbfbf;
+  border-width: 1px 1px 0 1px;
+  border-style: solid;
+}
+
+.group > h3 {
+  font-size: 11px;
+  color: #555;
+  padding: 0;
+  margin: 0;
+}
+
+/* Results */
+
+.result {
+  position: relative;
+  padding: 5px 7px;
+  background: white;
+  border-color: #bfbfbf;
+  border-width: 1px 1px 0 1px;
+  border-style: solid;
+  
+}
+
+.result > h4 {
+  font-size: 12px;
+  color: #3c3c3c;
+  padding: 0;
+  margin: 0 0 2px 0;
+}
+
+.result > p {
+  font-size: 11px;
+  line-height: 1.3;
+  color: #6f6f6f;
+  padding: 0;
+  margin: 0;
+}
+
+/* Highlighting */
+
+.result.highlight {
+  background: #0075ba;
+  border-top-color: #1f4a64;
+
+}
+
+.result.highlight > h4,
+.result.highlight > p {
+  color: white;
+}
+
+
+/*-----------------------------------
+Menu
+-------------------------------------*/
+.menu-container{
+  position: absolute;
+  top: 40px;
+  z-index: 9;
+  width: 100%;
+  /*text-align: center; */
+  font-family: Arial;
+  font-size: 12px;
+}
+.menu-container nav li:hover{
+  background: #333;
+
+}
+
+i[class*="icon"] {
+  margin-right:10px;
+  line-height: 15;
+}
+i {
+  position: relative;
+  bottom: 2px;
+}
+
+
+
+/****boostrap*/
+  
+.navbar-search{
+
+    height: 30px;
+}
+  
+.navbar-search .search-query {
+    padding-left: 29px !important;
+}
+
+.navbar-search .icon-search {
+    position: absolute;
+    top: 7px;
+    left: 11px;
+    background-image: url("http://twitter.github.com/bootstrap/assets/img/glyphicons-halflings.png");
+}
+
+.navbar-search input[type="text"]{
+    height: 30px;
+  }
+  
+/*
+Mapbox
+======
+*/
+.marker-popup{
+width:260px;
+box-shadow: 0 30px 20px -3px #666;
+/*border: 1px solid rgba(0, 0, 0, 0.2);
+border-radius: 6px 6px 6px 6px;    */
+
+}
+
+/*.marker-tooltip .marker-popup:after{
+  background:#000;
+  margin-top: 150px;
+}*/
+
+.popover-geo-title{
+    border-bottom: 1px solid #EBEBEB;
+    border-radius: 5px 5px 0 0;   
+}
+
+
+
+
+.box_toltip{
+  position:absolute;
+  top:40px;
+  z-index: 999999999;
+  left:40px;
+  right:0;
+padding:3px;
+
+width:auto;
+height:auto;
+background:#fff;
+position:relative;
+top:5px;
+  
+}
+
+.well-toltip{
+ /* text-align: center;*/
+  clear: both;
+  -webkit-box-shadow:rgba(0, 0, 0, 0.0470588) 0 1px 1px inset;
+  background-color:#F5F5F5;
+  border:1px solid #E3E3E3;
+  border-bottom-left-radius:4px;
+  border-bottom-right-radius:4px;
+  border-top-left-radius:4px;
+  border-top-right-radius:4px;
+  box-shadow:rgba(0, 0, 0, 0.0470588) 0 1px 1px inset;
+  padding:5px;
+  height:120px;  
+}
+
+/*-----------------------------------
+Seting Modal and Thumbnails in Booostrap
+-------------------------------------*/
+.modal-body {
+  overflow-y: auto;
+}
+
+#full-width .modal-body {
+  max-height: 550px;
+}
+
+#full-width .thumbnails{
+  margin-left: 0px;
+}
+
+
+
+.thumbnails li {
+    position: relative;
+    overflow: hidden;  
+}
+
+.thumbnail a {
+  text-decoration: none;
+  /*text-align: center;*/
+
+}
+
+.thumbnail a h4{
+  display:none;
+    text-decoration: none;
+}
+
+
+.thumbnail a:hover p {
+  background:#000;
+  opacity:0.3;
+width:102%;
+height:30%;
+top:70%;
+margin-left: -4px;
+  position:absolute;
+  display:block;
+
+   margin-top: 5px;
+   margin-bottom: 5px;
+
+  -moz-box-shadow: 0 0 5px #999;
+  -webkit-box-shadow: 0 0 5px #999;
+  box-shadow: 0 0 5px #999;
+
+  -moz-transition: top 1s;
+  -o-transition: top 1s;
+  -webkit-transition: top 1s;
+  transition: top 1s; 
+
+
+}
+
+.thumbnail a:hover h4{ 
+  position:absolute;
+  display:block;
+   text-decoration: none;
+   bottom:20px;
+   left:0;
+   right:0;
+ 
+  -moz-transition: top 1s;
+  -o-transition: top 1s;
+  -webkit-transition: top 1s;
+  transition: top 1s; 
+}
+
+
+
+
+.zoomer {
+  width:30px;
+  height:30px;
+  top:9px;
+  left:10px;
+  z-index:2;
+  }
+
+.zoomin {
+  background-position:-31px -1px;
+  left:39px;
+  -webkit-border-radius:0 3px 3px 0;
+          border-radius:0 3px 3px 0;
+  }
+
+.zoomout {
+  background-position:-61px -1px;
+  -webkit-border-radius:3px 0 0 3px;
+          border-radius:3px 0 0 3px;
+  }
+
+
+
+.play_stop{
+    background:#FFF;
+    position:absolute; 
+    height: 30px;
+    left: 10px;
+    top: 120px;    
+    width: 30px;
+    z-index: 3;
+     border-color:#b0b0b0;
+    background-color:#f0f0f0;
+
+  border:1px solid #bbb;
+  box-sizing:border-box;
+  background:#fff;
+  -webkit-border-radius:3px;
+          border-radius:3px; 
+}
+
+.play_stop i{
+  margin-left:8px;
+  margin-top: 8px;
+}
+
+
+#play_s{
+  border-radius: 0 3px 3px 0;
+  left: 39px;
+}
+
+#stop_s{
+border-radius: 3px 0 0 3px;
+}
+
+#play_s:hover ,#stop_s:hover { background: #ddd; }
+
+/******************************************************************************************/

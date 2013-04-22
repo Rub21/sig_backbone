@@ -1,27 +1,33 @@
 
+
 Mainview = Backbone.View.extend({
     el: 'body',
+    //template: _.template(tpl.get('main-template')),
     template: _.template($('#main_template').html()),
+    map: mapbox,
     events: {
         "click #inicio": "inicio",
         "click .btn_detail": "detail",
-        "click #close": "close"//close popover in app
+        "click #close": "close", //close popover in app
+        '/*': 'notfound'
     },
     initialize: function() {
         _.bindAll(this);
+        console.log(tpl.get('main'));
         this.collection = new Recursos();
         this.collection.bind("reset", this.render, this);
         this.collection.fetch();
         this.render();
-
     },
     render: function() {
+
+
         $(this.el).html(this.template());
         this.drawMarker(this.collection.toJSON());
+        this.fillSearch(this.collection.toJSON());
         return this;
     },
     drawMarker: function(f) {
-
         var features = f;
         var map_id = 'examples.map-4l7djmvo',
                 map = mapbox.map('map');
@@ -31,6 +37,8 @@ Mainview = Backbone.View.extend({
             lon: -74.22565
         }, 15);
         map.setZoomRange(0, 18);
+        map.ui.zoomer.add();
+        map.ui.zoombox.add();
 
         markerLayer = mapbox.markers.layer().features(features);
         markerLayer.factory(function(m) {
@@ -45,8 +53,8 @@ Mainview = Backbone.View.extend({
         });
         interaction = mapbox.markers.interaction(markerLayer);
         map.addLayer(markerLayer);
-        map.ui.zoomer.add();
-        map.ui.zoombox.add();
+
+        map.ui.fullscreen.add();
         map.ui.hash.add();
         interaction.formatter(function(feature) {
             var o = '<h5 class="popover-geo-title">' + feature.nombre + '</h5>' +
@@ -66,21 +74,34 @@ Mainview = Backbone.View.extend({
         $('#map').removeClass('loading');
 
     },
+    fillSearch: function(f) {
+        var recursos_search = [];
+        _.each(f, function(value, key) {
+            var feature_search = {
+                title: f[key].nombre,
+                categoria: f[key].clase
+            };
+            recursos_search.push(feature_search);
+        });
+        
+        console.log(recursos_search);
+
+    },
     detail: function(e) {
-        $('#detail').empty();        
-        var idproducto = $(e.currentTarget).attr('id');        
+        $('#detail').empty();
+        var idproducto = $(e.currentTarget).attr('id');
         var found_recurso = this.collection.find(function(item) {
             return item.get('idproducto') === idproducto;
         });
-        
-        
+
+
         var recursoView = new RecursoView_ForMap({
             model: found_recurso
-        });        
+        });
         $('#backdrop').fadeIn(200);
         $('#detail').show(200);
         $('#close').show(200);
-       // console.log(recursoView.render().el);
+        // console.log(recursoView.render().el);
         $('#detail').append(recursoView.render().el);
 
     },
@@ -91,8 +112,14 @@ Mainview = Backbone.View.extend({
         $('#close').hide(200);
     },
     inicio: function() {
-        alert('Inicio');
+        /*alert('Inicio');*/
+        /*map.ui.zoomer.add();
+         map.ui.zoombox.add();*/
+    },
+    notfound: function() {
+        alert('no found');
     }
+
 
 
 });

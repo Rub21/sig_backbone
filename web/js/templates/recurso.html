@@ -20,7 +20,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#complementario" id="select_complementario" ><i class="icon-dormir-black"></i>Otros Servicios
+                            <a href="#complementario" id="select_complementario" ><i class="icon-star-empty"></i>Otros Servicios
                             </a>
                         </li>
                         <li>
@@ -42,7 +42,7 @@
 
                             <%
 
-                            if (detalle.distancia!= null) {%>
+                            if (detalle.distancia.replace(/\s/g, "") != "") {%>
 
                             <tr>
                                 <td  width="150"> 
@@ -51,7 +51,7 @@
                             </tr>
                             <%}
 
-                            if (detalle.costo_ingreso!= null) {
+                            if (detalle.costo_ingreso.replace(/\s/g, "") != "") {
                             %>
                             <tr>
                                 <td width="150"> <i class="icon-hand-right">                                        
@@ -59,7 +59,7 @@
                                 <td><%=detalle.costo_ingreso%> </td>
                             </tr>
                             <%}                  
-                            if (detalle.temperatura!= null) {
+                            if (detalle.temperatura.replace(/\s/g, "") != "") {
                             %>
                             <tr>
                                 <td width="150"> 
@@ -69,8 +69,8 @@
                             </tr>
 
                             <%}
-
-                            if (detalle.como_llegar!= null) { %>
+                                
+                            if (detalle.como_llegar.replace(/\s/g, "") != "") { %>
                             <tr>
                             <tr>
                                 <td width="150">

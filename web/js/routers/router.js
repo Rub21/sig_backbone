@@ -4,7 +4,8 @@ var AppRouter = Backbone.Router.extend({
     routes: {
         "": "inicio",
         "detail/:id": "recursodetails",
-        "recursos": "recursos"
+        "recursos": "recursos",
+        "#*":"15"
 
     },
     inicio: function() {
@@ -40,6 +41,9 @@ var AppRouter = Backbone.Router.extend({
 //alert('recursos');
         var grid_recursoview = new Grid_RecursosView();
 
+    },
+    '15': function(){
+        
     }
 });
 

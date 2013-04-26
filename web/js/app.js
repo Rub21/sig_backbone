@@ -33,58 +33,26 @@ simplestyle_factory_rub = function(feature) {
  //Backbone.history.start();
  });*/
 
-var app = new AppRouter();
-Backbone.history.start();
+/*var app = new AppRouter();
+Backbone.history.start();*/
 
-
+  this.mainview = new Mainview();
 
 //var main = new Mainview();
 $(document).on('ready', function() {
 
-    $('#close').click(function() {
+    /*$('#close').click(function() {
         $('#backdrop').fadeOut(200);
         $('#detail').hide(200);
         $('#detail').empty();
         $('#close').hide(200);
-    });
+    });*/
+    
+    
+    
+   
 
 
-    // Search
-    $('#search').betterAutocomplete('init',
-         [], {
-        cacheLimit: 128,
-        selectKeys: [13],
-        crossOrigin: true
-    }, {
-        themeResult: function(result) {
-            output = '' + result.title + '';
-            /*output += '<p>' + result.categoria +'</p>';*/
-            return output;
-        },
-        select: function(result, $input) {
-            $input.blur();
-            $('#search').val(result.title);
-            markerLayer.filter(function(features) {
-                if (features.nombre === result.title) {
-                    map.ease.location({
-                        lat: features.geometry.coordinates[1],
-                        lon: features.geometry.coordinates[0]
-                    }).zoom(18).optimal();
-                    return true;
-
-                }
-
-            });
-            window.setTimeout(function() {
-                $('#search').val("");
-            }, 3000);
-
-        },
-        getGroup: function(result) {
-            if ($.type(result.categoria) == 'string' && result.categoria.length)
-                return result.categoria;
-        }
-    });
 
 
 });

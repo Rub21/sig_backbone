@@ -1,5 +1,5 @@
 
-simplestyle_factory_rub = function(feature) {
+var simplestyle_factory_rub = function(feature) {
     var sizes = {
         small: [20, 50],
         medium: [30, 70],
@@ -14,7 +14,7 @@ simplestyle_factory_rub = function(feature) {
     d.width = sizes[size][0];
     d.height = sizes[size][1];
     d.className = 'simplestyle-marker';
-    d.alt = fp.title || '';
+    // d.alt = fp.title || '';
     d.src = 'http://dl.dropbox.com/u/43116811/icon-tur/' + symbol + '-l.png';
     var ds = d.style;
     ds.position = 'absolute';
@@ -26,32 +26,61 @@ simplestyle_factory_rub = function(feature) {
     return d;
 };
 
+mainview = new Mainview();
 
-/*
- tpl.loadTemplates(['main', 'recurso'], function() {
- var app = new AppRouter();
- //Backbone.history.start();
- });*/
+var features_search = [];
 
-/*var app = new AppRouter();
-Backbone.history.start();*/
+window.setTimeout(function() {
+    var f = mainview.getcollecitionJSON();
+    //console.log(f.length);
+    _.each(f, function(value, key) {
+        var feature_search = {
+            title: f[key].nombre,
+            categoria: f[key].clase
+        };
+        features_search.push(feature_search);
+    });
+    console.log(features_search)
+}, 3000);
 
-  this.mainview = new Mainview();
 
-//var main = new Mainview();
 $(document).on('ready', function() {
 
-    /*$('#close').click(function() {
-        $('#backdrop').fadeOut(200);
-        $('#detail').hide(200);
-        $('#detail').empty();
-        $('#close').hide(200);
-    });*/
-    
-    
-    
-   
+    // Search
+    $('#search').betterAutocomplete('init',
+            features_search, {
+        cacheLimit: 128,
+        selectKeys: [13],
+        crossOrigin: true
+    }, {
+        themeResult: function(result) {
+            output = '' + result.title + '';
+            return output;
+        },
+        select: function(result, $input) {
+            $input.blur();
+            $('#search').val(result.title);
+            /*markerLayer.filter(function(features) {
+             if (features.nombre === result.title) {
+             map.ease.location({
+             lat: features.geometry.coordinates[1],
+             lon: features.geometry.coordinates[0]
+             }).zoom(18).optimal();
+             return true;
+             
+             }
+             
+             });*/
+            window.setTimeout(function() {
+                $('#search').val("");
+            }, 3000);
 
+        },
+        getGroup: function(result) {
+            if ($.type(result.categoria) == 'string' && result.categoria.length)
+                return result.categoria;
+        }
+    });
 
 
 

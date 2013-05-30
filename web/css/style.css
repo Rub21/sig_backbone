@@ -409,13 +409,6 @@ MapBox
 
 
 
-
-
-
-
-
-
-
 /*-----------------------------------
 Seting Modal and Thumbnails in Booostrap
 -------------------------------------*/
@@ -551,3 +544,8 @@ Seting Modal and Thumbnails in Booostrap
 #play_s:hover ,#stop_s:hover { background: #ddd; }
 
 /******************************************************************************************/
+
+
+.result{
+    cursor: pointer;
+}

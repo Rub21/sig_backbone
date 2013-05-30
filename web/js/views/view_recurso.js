@@ -2,14 +2,14 @@
  //define individual recurso view over Map
  *******************************************/
 var RecursoView_ForMap = Backbone.View.extend({
-    /*el: $("#detail"),
-     className: "sig_popover",*/
-    template: $("#recursoTemplate").html(),    
+    template: $("#recursoTemplate").html(),
+    map: mapbox,
     events: {
         "click #select_hotel": "select_hotel",
         "click #select_restaurant": "select_restaurant",
         "click #select_transporte": "select_transporte",
-        "click #select_complementario": "select_complementario"
+        "click #select_complementario": "select_complementario",
+        "click #select_todos": "select_todos"
     },
     initialize: function() {
         _.bindAll(this);
@@ -21,78 +21,102 @@ var RecursoView_ForMap = Backbone.View.extend({
     render: function() {
         var tmpl = _.template(this.template);
         $(this.el).html(tmpl(this.model.toJSON()));
-        this.mapservicios(this.collection.toJSON());
+
+        var _this = this;
+
+        window.setTimeout(function() {
+            _this.renderMap('examples.map-dg7cqh4z');
+            _this.drawMarker(_this.collection.toJSON());
+            console.log(_this.collection.toJSON());
+        }, 1000);
+
         return this;
     },
-    mapservicios: function(f) {
-//console.log(this.model.attributes.geometry);
-// console.log(this.collection.toJSON());
+    renderMap: function(map_id) {
         var lat = this.model.attributes.geometry.coordinates[1];
         var lon = this.model.attributes.geometry.coordinates[0];
-        window.setTimeout(function() {
-            var map_id = 'examples.map-dg7cqh4z',
-                    features = [],
-                    interaction,
-                    map = mapbox.map('map_servicios', null, null, [
-                easey_handlers.DoubleClickHandler(),
-                easey_handlers.DragHandler(),
-                easey_handlers.TouchHandler()]);
-            map.addLayer(mapbox.layer().id(map_id));
-            map.centerzoom({
-                lat: lat,
-                lon: lon
-            }, 15);
-            map.setZoomRange(0, 18);
-            mapServicioAdicional(f);
-            function mapServicioAdicional(f) {
-                features = f;
-                markerLayer = mapbox.markers.layer().features(features);
-                markerLayer.factory(function(m) {
-                    var elem = simplestyle_factory_rub(m);
-                    MM.addEvent(elem, 'click', function(e) {
-                        map.ease.location({
-                            lat: m.geometry.coordinates[1],
-                            lon: m.geometry.coordinates[0]
-                        }).zoom(map.zoom()).optimal();
-                    });
-                    return elem;
-                });
-                interaction = mapbox.markers.interaction(markerLayer);
-                map.addLayer(markerLayer);
-                map.ui.zoomer.add();
-                map.ui.zoombox.add();
-                map.ui.hash.add();
-                interaction.formatter(function(feature) {
-                    var o = '<h5 class="popover-geo-title">' + feature.nombre + '</h5>' +
-                            '<p>' + feature.descripcion.substring(0, 100) + '...</p>';
-                    return o;
-                });
-            }
-            ;
-        }, 1000);
+        this.map = mapbox.map('map_servicios', null, null, [
+            easey_handlers.DoubleClickHandler(),
+            easey_handlers.DragHandler(),
+            easey_handlers.TouchHandler()]);
+
+        this.map.addLayer(mapbox.layer().id(map_id));
+        this.map.centerzoom({
+            lat: lat,
+            lon: lon
+        }, 15);
+        this.map.setZoomRange(0, 18);
+        this.map.ui.zoomer.add();
+        this.map.ui.zoombox.add();
+        this.map.ui.hash.add();
+    },
+    drawMarker: function(f) {
+        var features = f;
+        this.markerLayer = mapbox.markers.layer().features(features);
+        this.markerLayer.factory(function(m) {
+            var elem = simplestyle_factory_rub(m);
+            $(elem).attr('lat', m.geometry.coordinates[1]);
+            $(elem).attr('lon', m.geometry.coordinates[0]);
+            return elem;
+        });
+
+        this.interaction = mapbox.markers.interaction(this.markerLayer);
+        this.map.addLayer(this.markerLayer);
+        this.interaction.formatter(function(feature) {
+            var o = '<h5 class="popover-geo-title">' + feature.nombre + '</h5>' +
+                    '<p>' + feature.descripcion.substring(0, 100) + '...</p>';
+            return o;
+        });
+
+
     },
     select_hotel: function() {
         var scroll_to = document.getElementById('servicios');
         scroll_to.scrollIntoView();
-        /* markerLayer.filter(function(features) {
-         var clase = features.clase.replace(/\s/g, "");
-         if (clase === 'Hotel') {
-         return true;
-         }
-         });*/
+        this.markerLayer.filter(function(features) {
+            var clase = features.clase.replace(/\s/g, "");
+            if (clase === 'Hotel') {
+                return true;
+            }
+        });
 
     },
     select_restaurant: function() {
         var scroll_to = document.getElementById('servicios');
         scroll_to.scrollIntoView();
+        this.markerLayer.filter(function(features) {
+            var clase = features.clase.replace(/\s/g, "");
+            if (clase === 'Restaurant') {
+                return true;
+            }
+        });
     },
     select_transporte: function() {
         var scroll_to = document.getElementById('servicios');
         scroll_to.scrollIntoView();
+        this.markerLayer.filter(function(features) {
+            var clase = features.clase.replace(/\s/g, "");
+            if (clase === 'Transporte') {
+                return true;
+            }
+        });
     },
     select_complementario: function() {
         var scroll_to = document.getElementById('servicios');
         scroll_to.scrollIntoView();
+        this.markerLayer.filter(function(features) {
+            var clase = features.clase.replace(/\s/g, "");
+            if (clase === 'Complementario') {
+                return true;
+            }
+        });
+    },
+    select_todos: function() {
+        var scroll_to = document.getElementById('servicios');
+        scroll_to.scrollIntoView();
+        this.markerLayer.filter(function(features) {
+            return true;
+        });
     }
 });
 /**************************************
@@ -140,7 +164,7 @@ var Grid_RecursosView = Backbone.View.extend({
     },
     detail: function(e) {
         $('#detail').empty();
-        var idproducto = $(e.currentTarget).attr('id');        
+        var idproducto = $(e.currentTarget).attr('id');
         var found_recurso = this.collection.find(function(item) {
             return item.get('idproducto') === idproducto;
         });

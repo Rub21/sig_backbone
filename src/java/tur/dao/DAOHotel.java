@@ -50,69 +50,64 @@ public class DAOHotel {
     }
 
     public void registrarhotel(BHotel bHotel) {
-        /*SELECT insert_hotel('29p', 'Sierra Dorada', 'Hotel', true, '29pr' , '2 estrellas', 'Hotel bueno', 'Parque de las marical', '310225','www..w.w.','de lunes a viernes', -74.265, -12.9845)
-
-
-         */
+        
         try {
+                       
+            /*            
+            insert_hotel(idproducto character(10),
+				          nombre character(100),
+					  idhotel varchar(10),
+					  categoria character(50),
+					  desccripcion text, 
+					  direccion character(100),   
+					  telefono character(50),
+					  sitio_web character(100),
+					  correo_electronico character(100),
+					  precio_de_habitacion text,  
+					  formas_de_pago character(100),					  
+					  lat numeric,
+					  lon numeric
+				           )
+            
+            */
+            
             String sql = "SELECT insert_hotel('" + bHotel.getIdproducto() + "',"
                     + " '" + bHotel.getNombre() + "',"
                     + " '" + bHotel.getClase() + "', "
                     + bHotel.isEstado() + ", "
                     + "'" + bHotel.getIdhotel() + "' ,"
-                    + " '" + bHotel.getCategoria() + "',"
-                    + " '" + bHotel.getDescripcion() + "', "
+                    + " '" + bHotel.getCategoria() + "'," 
+                    + "'" + bHotel.getDescripcion()+ "', "
                     + "'" + bHotel.getDireccion() + "', "
                     + "'" + bHotel.getTelefono() + "',"
-                    + "'" + bHotel.getSitio() + "',"
-                    + "'" + bHotel.getHora_aten() + "',"
-                    + bHotel.getbGeometry().getLatitud() + ", "
-                    + bHotel.getbGeometry().getLongitud() + ");";
+                    + "'" + bHotel.getSitio_web() + "',"
+                    + "'" + bHotel.getCorreo_electronico()+ "',"
+                    + "'" + bHotel.getPrecio_de_habitacion()+ "',"
+                    + "'" + bHotel.getFormas_de_pago()+ "',"
+                    + bHotel.getGeometry().getLatitud() + ", "
+                    + bHotel.getGeometry().getLongitud() + ");";
 
             //IMAGEN
             String sql_img = "";
             for (int i = 0; i < bHotel.getImagenes().size(); i++) {
 
-                sql_img += "INSERT INTO imagen(url, titulo, decripcion, idproducto) "
-                        + "VALUES ('" + bHotel.getImagenes().get(i).getUrl()
-                        + "','" + bHotel.getImagenes().get(i).getTitulo()
-                        + "','" + bHotel.getImagenes().get(i).getDescripcion()
+                sql_img += "INSERT INTO imagen(url, idproducto) "
+                        + "VALUES ('" + bHotel.getImagenes().get(i).getUrl()        
                         + "', '" + bHotel.getImagenes().get(i).getIdproducto() + "');";
             }
 
-            //HABITACION
-            String sql_hab = "";
-            for (int i = 0; i < bHotel.getbHabitacion().size(); i++) {
-
-                sql_hab += "INSERT INTO habitacion(tipo, precio, descripcion, idhotel)"
-                        + " VALUES ('" + bHotel.getbHabitacion().get(i).getTipo() + "',"
-                        + bHotel.getbHabitacion().get(i).getPrecio() + ","
-                        + " '" + bHotel.getbHabitacion().get(i).getDescripcion() + "',"
-                        + " '" + bHotel.getbHabitacion().get(i).getIdhotel() + "');";
-            }
-
-            //SERVICIO
+           //SERVICIO
             String sql_ser = "";
             for (int i = 0; i < bHotel.getbServiciosAdicional().size(); i++) {
 
-                sql_ser += "INSERT INTO servicion_adicional(tipo, descripcion, idproducto) "
-                        + "VALUES ('" + bHotel.getbServiciosAdicional().get(i).getTipo() + "', "
-                        + "'" + bHotel.getbServiciosAdicional().get(i).getDescripcion() + "', "
+                sql_ser += "INSERT INTO servicion_adicional(tipo, idproducto) "
+                        + "VALUES ('" + bHotel.getbServiciosAdicional().get(i).getTipo() + "', "                        
                         + "'" + bHotel.getbServiciosAdicional().get(i).getIdproducto() + "');";
             }
-            //PROMOCION
-            String sql_prom = "";
-            for (int i = 0; i < bHotel.getbPromocion().size(); i++) {
+         
 
-                sql_prom += "INSERT INTO promocion(tipo, descripcion, idproducto) "
-                        + "VALUES ('" + bHotel.getbPromocion().get(i).getTipo() + "',"
-                        + " '" + bHotel.getbPromocion().get(i).getDescripcion() + "', "
-                        + "'" + bHotel.getbPromocion().get(i).getIdproducto() + "');";
-            }
-
-
-            sql = sql + sql_img + sql_hab + sql_ser + sql_prom;
-            System.out.println("SQL" + sql);
+            sql = sql + sql_img + sql_ser ;
+            System.out.println("SQ=======================L" + sql);
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
             /*pstmt.executeQuery();
@@ -150,7 +145,7 @@ public class DAOHotel {
                 bHotel.setDescripcion(rs.getString("descripcion"));
                 bHotel.setDireccion(rs.getString("direccion"));
                 bHotel.setTelefono(rs.getString("telefono"));
-                bHotel.setSitio(rs.getString("sitio"));
+                bHotel.setSitio_web(rs.getString("sitio"));
                 bHotel.setHora_aten(rs.getString("hora_aten"));
 
 

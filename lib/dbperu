@@ -1,0 +1,395 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.1.9
+-- Dumped by pg_dump version 9.1.9
+-- Started on 2013-06-30 07:53:44 PET
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 170 (class 3079 OID 11680)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 1957 (class 0 OID 0)
+-- Dependencies: 170
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 164 (class 1259 OID 426736)
+-- Dependencies: 5
+-- Name: geometry; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE geometry (
+    id character varying(10) NOT NULL,
+    lat numeric,
+    lon numeric
+);
+
+
+ALTER TABLE public.geometry OWNER TO postgres;
+
+--
+-- TOC entry 165 (class 1259 OID 426744)
+-- Dependencies: 5
+-- Name: habitacion; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE habitacion (
+    id character varying(10) NOT NULL,
+    tipo character varying(50),
+    precio numeric,
+    descripcion text
+);
+
+
+ALTER TABLE public.habitacion OWNER TO postgres;
+
+--
+-- TOC entry 163 (class 1259 OID 426728)
+-- Dependencies: 5
+-- Name: imagen; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE imagen (
+    id character varying(10) NOT NULL,
+    url character varying(100),
+    titulo character varying(100),
+    decripcion text
+);
+
+
+ALTER TABLE public.imagen OWNER TO postgres;
+
+--
+-- TOC entry 166 (class 1259 OID 426752)
+-- Dependencies: 5
+-- Name: promocion; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE promocion (
+    id character varying(10) NOT NULL,
+    tipo character varying(100),
+    descripcion text
+);
+
+
+ALTER TABLE public.promocion OWNER TO postgres;
+
+--
+-- TOC entry 162 (class 1259 OID 426190)
+-- Dependencies: 5
+-- Name: recurso; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE recurso (
+    nombre character varying(100),
+    provincia character varying(100),
+    categoria character varying(100),
+    tipo character varying(100),
+    descr_es text,
+    descr_in text,
+    url_img text[],
+    lat numeric,
+    lon numeric
+);
+
+
+ALTER TABLE public.recurso OWNER TO postgres;
+
+--
+-- TOC entry 161 (class 1259 OID 426184)
+-- Dependencies: 5
+-- Name: recurso1; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE recurso1 (
+    nombre character varying(100),
+    provincia character varying(100),
+    categoria character varying(100),
+    tipo character varying(100),
+    descr_es text,
+    descr_in text,
+    url_img text[],
+    lat numeric,
+    lon numeric
+);
+
+
+ALTER TABLE public.recurso1 OWNER TO postgres;
+
+--
+-- TOC entry 168 (class 1259 OID 426768)
+-- Dependencies: 1926 5
+-- Name: recurso_tur; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE recurso_tur (
+    id character varying(10) NOT NULL,
+    nombre character varying(100),
+    categoria character varying(50),
+    tipo character varying(100),
+    descripcion text,
+    estado boolean NOT NULL,
+    fecharegistro timestamp without time zone DEFAULT now(),
+    idimagen character varying(10),
+    idgeometry character varying(10)
+);
+
+
+ALTER TABLE public.recurso_tur OWNER TO postgres;
+
+--
+-- TOC entry 169 (class 1259 OID 426792)
+-- Dependencies: 5
+-- Name: recurso_tur_imagen; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE recurso_tur_imagen (
+    idrecurso character varying(10) NOT NULL,
+    idimagen character varying(10) NOT NULL
+);
+
+
+ALTER TABLE public.recurso_tur_imagen OWNER TO postgres;
+
+--
+-- TOC entry 167 (class 1259 OID 426760)
+-- Dependencies: 5
+-- Name: servicion_adicional; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE servicion_adicional (
+    id character varying(10) NOT NULL,
+    tipo character varying(100),
+    descripcion text
+);
+
+
+ALTER TABLE public.servicion_adicional OWNER TO postgres;
+
+--
+-- TOC entry 1944 (class 0 OID 426736)
+-- Dependencies: 164 1950
+-- Data for Name: geometry; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY geometry (id, lat, lon) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1945 (class 0 OID 426744)
+-- Dependencies: 165 1950
+-- Data for Name: habitacion; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY habitacion (id, tipo, precio, descripcion) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1943 (class 0 OID 426728)
+-- Dependencies: 163 1950
+-- Data for Name: imagen; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY imagen (id, url, titulo, decripcion) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1946 (class 0 OID 426752)
+-- Dependencies: 166 1950
+-- Data for Name: promocion; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY promocion (id, tipo, descripcion) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1942 (class 0 OID 426190)
+-- Dependencies: 162 1950
+-- Data for Name: recurso; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY recurso (nombre, provincia, categoria, tipo, descr_es, descr_in, url_img, lat, lon) FROM stdin;
+piky	Cangallo	Manifestación Cultural	Museos	ads	sasa	{bbox130212220737.png,pladdce1130212220737.png,trabajandoqui130212220737.png}	-13.16311	-74.22741
+Huanta	Cangallo	Manifestación Cultural	Arquitectura y Espacios Urbanos	huanta 	huant	{Medan-centro130212231857.jpg,Medan-centro-after-130212231857.jpg,Medan-centro-before130212231857.jpg,Medan--mas-norte-before130212231857.jpg,Medan-sur-before130212231857.jpg,Medan-sur130212231857.jpg,Medan--mas-norte-after130212231857.jpg,Medan-sur-before130212231857.jpg,Medan-norte-after130212231857.jpg}	-13.1614	-74.2305
+piky	Cangallo	Sitio Natural	Montañas	ÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑ	ÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑ	{Barra-da-Tijuca-before6130212232550.jpg}	-13.16173	-74.22788
+quinua	Cangallo	Sitio Natural	Montañas	óóó´oóó	íííí´iíí	{Barra-da-Tijuca-before4130212232703.jpg,Barra-da-Tijuca-after130212232703.jpg,Barra-da-Tijuca-before4-1130212232703.jpg,Barra-da-Tijuca-before4-1130212232703.jpg}	-13.16132	-74.22951
+hhhhhhhhhhh	Cangallo	Sitio Natural	Montañas	hhhhhhhhhhhh	hhhhhhhhhhh	{Barra-da-Tijuca-before4-1130213213028.jpg,Barra-da-Tijuca-before5130213213028.jpg}	-13.1657	-74.22973
+hghgjghjjg	Cangallo	Sitio Natural	Montañas	hfdh	hdf	{bmotrsr130213213308.jpg,Barra-da-Tijuca-before1130213213308.jpg}	-13.18058	-74.20947
+wari3	Cangallo	Sitio Natural	Montañas	fd	gdsfg	{ferraz-after130213213443.png,FerrazdeVasconcelosBrasil130213213443.png}	-13.16042	-74.22578
+Acuchimay	Cangallo	Sitio Natural	Montañas	rr	rr	{FerrazdeVasconcelosBrasil130215181430.png,Ipatinga-before130215181430.png,itapevi-v130215181430.png,Itaúna-after130215181430.png}	-13.16399	-74.22913
+Papa de Quinua	Humanga	Manifestación Cultural	Lugares Históricos	dfg	fsd	{FerrazdeVasconcelos-josm130215181536.png,maua-after130215181536.png,Ipatinga-before130215181536.png}	-13.19341	-74.24445
+ruben	Cangallo	Sitio Natural	Montañas			{ferraz-before130222183834.png}	-13.15852	-74.22475
+Sucre	Cangallo	Realizaciones Técnicas Científicas 	null	hhgh	ghhghg	{IpatingaBrazil130223225229.png,ItaunaBrazil130223225229.png}	-14.38173	-73.94915
+\.
+
+
+--
+-- TOC entry 1941 (class 0 OID 426184)
+-- Dependencies: 161 1950
+-- Data for Name: recurso1; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY recurso1 (nombre, provincia, categoria, tipo, descr_es, descr_in, url_img, lat, lon) FROM stdin;
+12	46	46	46	46	46	{46,46,46,46,46}	14	13
+wari2	Cangallo	Sitio Natural	Montañas	rtertert	reterter	{one130212075934.png,paginaa2130212075934.png,mapeobasura130212075934.png}	-13.15651	-74.22874
+piky	Cangallo	Sitio Natural	Montañas	ttt	ttttttt	{gg130212081354.png,"pages2 (copy)130212081354.png","view -1130212081354.png"}	-13.15664	-74.23033
+fd	Cangallo	Sitio Natural	Montañas	sdf	fsd	{markerss130212082022.png,"pages2 (copy)130212082022.png",formulario2-g130212082022.png}	-13.15584	-74.23131
+ruben	Cangallo	Sitio Natural	Montañas	sf	fds	{bbox130212202205.png,pladdce1130212202205.png,trabajandoqui130212202205.png}	-13.15818	-74.22385
+\.
+
+
+--
+-- TOC entry 1948 (class 0 OID 426768)
+-- Dependencies: 168 1950
+-- Data for Name: recurso_tur; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY recurso_tur (id, nombre, categoria, tipo, descripcion, estado, fecharegistro, idimagen, idgeometry) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1949 (class 0 OID 426792)
+-- Dependencies: 169 1950
+-- Data for Name: recurso_tur_imagen; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY recurso_tur_imagen (idrecurso, idimagen) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1947 (class 0 OID 426760)
+-- Dependencies: 167 1950
+-- Data for Name: servicion_adicional; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY servicion_adicional (id, tipo, descripcion) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1930 (class 2606 OID 426743)
+-- Dependencies: 164 164 1951
+-- Name: geometry_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY geometry
+    ADD CONSTRAINT geometry_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1932 (class 2606 OID 426751)
+-- Dependencies: 165 165 1951
+-- Name: habitacion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY habitacion
+    ADD CONSTRAINT habitacion_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1928 (class 2606 OID 426735)
+-- Dependencies: 163 163 1951
+-- Name: imagen_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY imagen
+    ADD CONSTRAINT imagen_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1934 (class 2606 OID 426759)
+-- Dependencies: 166 166 1951
+-- Name: promocion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY promocion
+    ADD CONSTRAINT promocion_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1938 (class 2606 OID 426776)
+-- Dependencies: 168 168 1951
+-- Name: recurso_tur_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY recurso_tur
+    ADD CONSTRAINT recurso_tur_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1936 (class 2606 OID 426767)
+-- Dependencies: 167 167 1951
+-- Name: servicion_adicional_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY servicion_adicional
+    ADD CONSTRAINT servicion_adicional_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1940 (class 2606 OID 426787)
+-- Dependencies: 1929 164 168 1951
+-- Name: fk_id_recurso_geometry; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY recurso_tur
+    ADD CONSTRAINT fk_id_recurso_geometry FOREIGN KEY (idgeometry) REFERENCES geometry(id);
+
+
+--
+-- TOC entry 1939 (class 2606 OID 426782)
+-- Dependencies: 1927 168 163 1951
+-- Name: fk_id_recurso_imagen; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY recurso_tur
+    ADD CONSTRAINT fk_id_recurso_imagen FOREIGN KEY (idimagen) REFERENCES imagen(id);
+
+
+--
+-- TOC entry 1956 (class 0 OID 0)
+-- Dependencies: 5
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2013-06-30 07:53:45 PET
+
+--
+-- PostgreSQL database dump complete
+--
+

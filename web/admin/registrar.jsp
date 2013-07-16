@@ -21,7 +21,7 @@
 <%} else {%>
 <script>
 
-   alert('Los Datos Fueron Registrados');
+    alert('Los Datos Fueron Registrados');
 
 </script>
 <%}
@@ -56,7 +56,7 @@
                             <ul class="nav">
                                 <li class="active"><a href="#">Inicio</a></li>
                                 <li class="dropdown">
-                                    <a href="#recurso">Recursos Turistico</a>
+                                    <a href="#recurso">Recurso turístico</a>
                                 </li>
 
                                 <li class="dropdown">
@@ -90,10 +90,7 @@
                     <h1>Sitio de Administracion de Producto Turistico</h1>
                     <p> Bienvenido a la sitio de administracion de Producto turistico de la Region de Ayacucho.</p>
                 </div>
-
-
             </div>
-
         </div>
 
 
@@ -124,7 +121,8 @@
         <!--Scripts-->		
         <script src='http://api.tiles.mapbox.com/mapbox.js/v0.6.6/mapbox.js'></script>
         <script src='http://code.jquery.com/jquery-1.8.2.js'></script>
-        <script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js"></script>
+       
         <script src='js/underscore.min.js'></script>
         <script src='js/bootstrap.js'></script>        
         <script src='js/fun_map.js' ></script>

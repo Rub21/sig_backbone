@@ -1,6 +1,6 @@
 function map(id){
     //recepcion de r,h,re    
-    var m = mapbox.map('map-'+id, mapbox.layer().id('examples.map-4l7djmvo')),
+    var m = mapbox.map('map-'+id, mapbox.layer().id('ruben.map-5m93f3zc')),
     point,
     _d, // Down Event
     tol = 4, // Touch Tolerance

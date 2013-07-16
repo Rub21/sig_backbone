@@ -3,56 +3,70 @@
     <div class="container">
         <div class="row">                  
             <div class="well span8" align="center">
-                <h4> Generalidades de Planta Turística - Hoteles</h4>
+                <h4> Registrar planta turística- Hotel</h4>
                 <div class="container-fluid">
                     <div class="row-fluid">
-                        <div class="span4">Nombre del Servico </div>
+                        <div class="span4">Nombre </div>
                         <div class="span4">
-                            <input type='text'  name='name' value=''  align="left" id='name-h' placeholder="" required/>
+                            <input type='text'  name='nombre' value=''  align="left" id='nombre-h' placeholder="Nombre del hotel" required/>
                         </div>
                     </div>
                     <div class="row-fluid">
                         <div class="span4 left">Categoria</div>
                         <div class="span4">
-                            <select name='category' id='category-h' align="left" >
+                            <select name='categoria' id='categoria-h' align="left" >
                                 <option value='Sin Categoria'>Sin Categoria</option>
                                 <option value='1 Estrella'>1 Estrella</option>
                                 <option value='2 Estrellas'>2 Estrellas</option>
                                 <option value='3 Estrellas'>3 Estrellas</option>
-                                <option value='4 Estrellas'>4 Estrellas</option>
-                                <!--<option value='5 Estrella'>5 Estrella</option>-->
+                                <option value='4 Estrellas'>4 Estrellas</option>                                
                             </select>
                         </div>
-                    </div>                     
+                    </div>   
+
                     <div class="row-fluid">
                         <div class="span4">Descripción</div>
                         <div class="span4">
-                            <textarea  name='description'  rows='8' cols='75' id='description-h' align="left"></textarea>
+                            <textarea  name='descripcion'  rows='8' cols='75' id='descripcion-h' align="left"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row-fluid">
+                        <div class="span4">Dirección</div>
+                        <div class="span4">
+                            <input type='text'  name='direccion' value=''  align="left" id='direcion-h' placeholder=" Dirección  del hotel" required/>
                         </div>
                     </div>
                     <div class="row-fluid">
-                        <div class="span4">Direción</div>
+                        <div class="span4">Teléfono</div>
                         <div class="span4">
-                            <input type='text'  name='direction' value=''  align="left" id='name-h' placeholder="Ingrese Direción del Servicio" />
-                        </div>
-                    </div>
-                    <div class="row-fluid">
-                        <div class="span4"> Telefono</div>
-                        <div class="span4">
-                            <input type='text'  name='phone' value=''  align="left" id='name-h' placeholder="Ingrese Telefono del Servicio" />
+                            <input type='text'  name='telefono' value=''  align="left" id='telefono-h' placeholder="Teléfono del hotel" required/>
                         </div>
                     </div>
 
                     <div class="row-fluid">
                         <div class="span4">Sitio Web</div>
                         <div class="span4">
-                            <input type='text'  name='site' value=''  align="left" id='name-h' placeholder="Ingrese Direción del Sitio Web" />
+                            <input type='text'  name='sitio_web' value=''  align="left" id='sitio_web-h' placeholder="Sitio web del hotel" />
                         </div>
                     </div>
                     <div class="row-fluid">
-                        <div class="span4">Horario de Atención</div>
+                        <div class="span4">Correo electrónico</div>
                         <div class="span4">
-                            <input type='text'  name='opening_hours' value=''  align="left" id='name-h' placeholder="Ingrese Horario de Atención" />
+                            <input type='text'  name='correo_electronico' value=''  align="left" id='correo_electronico-h' placeholder="Correo electrónico del hotel " />
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span4">Precio Ref de habitación</div>
+                        <div class="span4">
+                            <input type='text'  name='precio_de_habitacion' value=''  align="left" id='precio_de_habitacion-h' placeholder="Referencia de precio de habitación" required/>
+                        </div>
+                    </div>
+
+                    <div class="row-fluid">
+                        <div class="span4">Formas de pago</div>
+                        <div class="span4">
+                            <input type='text'  name='formas_de_pago' value=''  align="left" id='formas_de_pago-h' placeholder="Referencia de precio de habitación" />
                         </div>
                     </div>
                 </div>   
@@ -63,7 +77,7 @@
     <div class="container">                         
         <div class="row">                       
             <div class="well span8" align="center">
-                <h4>Ubicacion del Servicio</h4>
+                <h4>Localización del hotel</h4>
                 <div class="container-fluid">
                     <div class="row-fluid">                            
                         <div class="span2"><input type="checkbox" class='chek_lat_lon' id='chek_lat_lon-h' name="chek_lat_lon" value=''></div>
@@ -109,16 +123,9 @@
     <div class="container">
         <div class="row"> 
             <div class="well span8 file_upload" align="center" id='f1-h'>  
-                <h4>Imagenes del Recurso</h4>
+                <h4>Galería de Imágenes del Hotel</h4>
                 <div class='well file_upload' id='f1-h'>
-                    <input name='file1' type='file' id='file_img1-h'/>
-                    <input type='text' name='title_img1' value=''  id='title_img1-h' placeholder='Nombre de Imagen 1' />
-                    <textarea class="span7" name='description_img1' rows='2' cols='75'  id='description_img1-h'placeholder='Descripcion de la imagen 1'></textarea>
-                </div>
-                  <div class='well file_upload' id='f2-h'>
-                    <input name='file2' type='file' id='file_img2-h'/>
-                    <input type='text' name='title_img2' value=''  id='title_img2-h' placeholder='Nombre de Imagen 2' />
-                    <textarea class="span7" name='description_img2' rows='2' cols='75'  id='description_img2-h'placeholder='Descripcion de la imagen 2'></textarea>
+                    <input name='file1' type='file' id='file_img1-h' required/>
                 </div>
                 <div id='file_tools-h'>
                     <img src='img/file_add.png' id='add_file-h' title='Add new input'/>
@@ -127,64 +134,16 @@
             </div> 
         </div> 
     </div> 
-
-    <div class="container">                         
-        <div class="row">                       
-            <div class="well span8" align="center">
-                <h4>Habitaciones</h4>
-                <div class="container-fluid">
-                    <div class="well" id="room1">
-                        <div class="row-fluid">
-                            <div class="span4 left">Tipo</div>
-                            <div class="span4">
-                                <select name='type-room1' id='type-room1-h' align="left" >
-                                    <option value='simple'>Simple</option>
-                                    <option value='Domble'>Doble</option>
-                                    <option value='Matrimonia'>Matrimonial</option>
-                                    <option value='Suit'>Suit</option>
-
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row-fluid ">
-                            <div class="span4">Precio</div>
-                            <div class="span4">                          
-                                <input type='text'  name='price-room1' value=''  align="left" id='price-room1-h'  placeholder="Precio de la Habitacion"/>
-                            </div>
-                        </div> 
-                        <div class="row-fluid">
-                            <div class="span4">Descripción</div>
-                            <div class="span4">                          
-                                <textarea  name='description-room1'  rows='3' cols='75' id='description-room1-h' align="left"></textarea>
-                            </div>
-                        </div> 
-                    </div>
-                    <div id='room_tools-h'>
-                        <img src='img/file_add.png' id='add_room-h' title='Add new input'/>
-                        <img src='img/file_del.png' id='del_room-h' title='Delete'/>
-                    </div>
-                </div>
-
-            </div>
-        </div>                       
-    </div> 
-
     <div class="container">                         
         <div class="row">                       
             <div class="well span8" align="center">
                 <h4>Servicios Adicionales</h4>
                 <div class="container-fluid">
-                    <div class="well" id="service1">
-                        <div class="row-fluid ">
-                            <div class="span4">Tipo de Servicio</div>
+                    <div id="service1">
+                        <div class="row-fluid well">
+                            <div class="span4">Tipo de Servicio 1</div>
                             <div class="span4">                          
                                 <input type='text'  name='type-service1' value=''  align="left" id='type-service1-h'  placeholder="Nombre del Servicios"/>
-                            </div>
-                        </div>  
-                        <div class="row-fluid">
-                            <div class="span4">Descripción del Servicio</div>
-                            <div class="span4">                          
-                                <textarea  name='description-service1'  rows='3' cols='75' id='description-service1-h' align="left"></textarea>
                             </div>
                         </div> 
                     </div>
@@ -196,44 +155,6 @@
             </div>
         </div>                       
     </div>  
-
-    <div class="container">                         
-        <div class="row">                       
-            <div class="well span8" align="center">
-                <h4>Promociones</h4>
-                <div class="container-fluid">
-                    <div class="well" id="promotion1">
-                        <div class="row-fluid ">
-                            <div class="span4">Tipo de Promoción</div>
-                            <div class="span4">                          
-                                <input type='text'  name='type-promotion1' value=''  align="left" id='type-promotion1-h'  placeholder="Nombre de la promoción"/>
-                            </div>
-                        </div>  
-                        <div class="row-fluid">
-                            <div class="span4">Descripción de la Promoción</div>
-                            <div class="span4">                          
-                                <textarea  name='description-promotion1'  rows='3' cols='75' id='description-promotion1-h' align="left"></textarea>
-                            </div>
-                        </div> 
-                    </div>
-
-                    <div id='promotion_tools-h'>
-                        <img src='img/file_add.png' id='add_promotion-h' title='Add new input'/>
-                        <img src='img/file_del.png' id='del_promotion-h' title='Delete'/>
-                    </div>
-                </div>
-            </div>
-        </div>                       
-    </div>  
-
-
-
-
-
-
-
-
-
     <button type="submit" class="btn btn-primary" id="button-h">  Registrar</button>
     <button type="reset" class="btn">Limpiar</button>
     <a class="btn" id="clear-h" href="#close">Cancelar</a>

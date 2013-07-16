@@ -10,8 +10,8 @@ function enable_check(id) {
     });
 }
 
-function add_imagen(id) {
-    var counter = 3;
+function add_imagen_description(id) {
+    var counter = 2;
     $('#del_file-' + id).hide();
     $('img#add_file-' + id).click(function() {
         $('#file_tools-' + id).before('<div class="well file_upload" id="f' + counter + '">' +
@@ -23,7 +23,27 @@ function add_imagen(id) {
         counter++;
     });
     $('img#del_file-' + id).click(function() {
-        if (counter == 4) {
+        if (counter == 3) {
+            $('#del_file-' + id).hide();
+        }
+        counter--;
+        $('#f' + counter).remove();
+    });
+}
+
+function add_imagen(id) {
+    var counter = 2;
+    $('#del_file-' + id).hide();
+    $('img#add_file-' + id).click(function() {
+        $('#file_tools-' + id).before(
+                '<div class="well file_upload" id="f' + counter + '">' +
+                    '<input name="file' + counter + '" type="file" id="file_img' + counter + '-' + id + '" required>' + //forma ejemplo  file_img1-r
+                    '</div>');
+        $('#del_file-' + id).fadeIn(0);
+        counter++;
+    });
+    $('img#del_file-' + id).click(function() {
+        if (counter == 3) {
             $('#del_file-' + id).hide();
         }
         counter--;
@@ -48,7 +68,7 @@ function initializer() {
     //Recurso
     map('r');
     enable_check('r');
-    add_imagen('r');
+    add_imagen_description('r');
     clean_filed('r');
     //Hotel
     map('h');

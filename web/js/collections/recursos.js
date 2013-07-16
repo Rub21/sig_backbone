@@ -1,6 +1,6 @@
 var Recursos = Backbone.Collection.extend({
     model: Recurso,
-    url: 'http://localhost:8080/sig-backbone/SListarRecurso',
+    url: 'http://localhost:8080/sig_backbone/SListarRecurso',
     parse: function(response) {
         //console.log(response);
         return response;

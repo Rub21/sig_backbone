@@ -21,10 +21,8 @@ import javazoom.upload.UploadBean;
 import javazoom.upload.UploadException;
 import javazoom.upload.UploadFile;
 import tur.bean.BGeometry;
-import tur.bean.BHabitacion;
 import tur.bean.BImagen;
 import tur.bean.BHotel;
-import tur.bean.BPromocion;
 import tur.bean.BServiciosAdicional;
 import tur.datasource.BDConnecion;
 import tur.manager.ManagerHotel;
@@ -74,40 +72,30 @@ public class SRegistrarHotel extends HttpServlet {
         Boolean estado = true;
 
 
+
         try {
             //Datos Producto
             bHotel.setIdproducto(idproducto);
-            bHotel.setNombre(mrequest.getParameter("name"));
+            bHotel.setNombre(mrequest.getParameter("nombre"));
             bHotel.setClase(clase);
             bHotel.setEstado(estado);
 
             //Hotel
             bHotel.setIdhotel(idhotel);
-            bHotel.setCategoria(mrequest.getParameter("category"));
-            bHotel.setDescripcion(mrequest.getParameter("description"));
-            bHotel.setDireccion(mrequest.getParameter("direction"));
-            bHotel.setTelefono(mrequest.getParameter("phone"));
-            bHotel.setSitio(mrequest.getParameter("site"));
-            bHotel.setHora_aten(mrequest.getParameter("opening_hours"));
+            bHotel.setCategoria(mrequest.getParameter("categoria"));
+            bHotel.setDescripcion(mrequest.getParameter("descripcion"));
+            bHotel.setDireccion(mrequest.getParameter("direccion"));
+            bHotel.setTelefono(mrequest.getParameter("telefono"));
+            bHotel.setSitio_web(mrequest.getParameter("sitio_web"));
+            bHotel.setCorreo_electronico(mrequest.getParameter("correo_electronico"));
+            bHotel.setPrecio_de_habitacion(mrequest.getParameter("precio_de_habitacion"));
+            bHotel.setFormas_de_pago(mrequest.getParameter("formas_de_pago"));
+
 
             // Geometry            
             bGeometry.setLatitud(Double.parseDouble(mrequest.getParameter("lat")));
             bGeometry.setLongitud(Double.parseDouble(mrequest.getParameter("lon")));
             bGeometry.setIdproducto(idproducto);
-
-            //Habitacion
-            ArrayList<BHabitacion> listhab = new ArrayList<BHabitacion>();
-            int num_habitaciones = Integer.parseInt(mrequest.getParameter("num-rooms"));
-            for (int i = 1; i <= num_habitaciones; i++) {
-                BHabitacion bHab = new BHabitacion();
-
-                bHab.setTipo(mrequest.getParameter("type-room" + i));
-                bHab.setPrecio(Double.parseDouble(mrequest.getParameter("price-room" + i)));
-                bHab.setDescripcion(mrequest.getParameter("description-room" + i));
-                bHab.setIdhotel(idhotel);
-                listhab.add(bHab);
-            }
-            bHotel.setbHabitacion(listhab);
 
             //Servicios Adicional
             ArrayList<BServiciosAdicional> listser = new ArrayList<BServiciosAdicional>();
@@ -117,26 +105,25 @@ public class SRegistrarHotel extends HttpServlet {
                 //System.out.println("=====================Servicio adicional i= " + i);
                 BServiciosAdicional bServiciosAdicional = new BServiciosAdicional();
                 bServiciosAdicional.setTipo(mrequest.getParameter("type-service" + i));
-                bServiciosAdicional.setDescripcion(mrequest.getParameter("description-service" + i));
+                //bServiciosAdicional.setDescripcion(mrequest.getParameter("description-service" + i));
+
                 bServiciosAdicional.setIdproducto(idproducto);
-                listser.add(bServiciosAdicional);
+                //System.out.println("*************************"+bServiciosAdicional.getTipo().equals(""));
+                if (num_servicios == 1 && bServiciosAdicional.getTipo().equals("")) {
+                } else {
+                    listser.add(bServiciosAdicional);
+                }
+
+
+
             }
             bHotel.setbServiciosAdicional(listser);
 
-            //Promocion
-            ArrayList<BPromocion> listprom = new ArrayList<BPromocion>();
-            int num_promociones = Integer.parseInt(mrequest.getParameter("num-promotions"));
-            for (int i = 1; i <= num_promociones; i++) {
-                BPromocion bPromocion = new BPromocion();
-                bPromocion.setTipo(mrequest.getParameter("type-promotion" + i));
-                bPromocion.setDescripcion(mrequest.getParameter("description-promotion" + i));
-                bPromocion.setIdproducto(idproducto);
-                listprom.add(bPromocion);
-            }
-            bHotel.setbPromocion(listprom);
 
             //Imagen    
             ArrayList<BImagen> listImagenes = new ArrayList<BImagen>();
+            System.out.println("files.size()" + files.size());
+
             for (int i = 1; i <= files.size(); i++) {
                 bImagen = new BImagen();
 
@@ -149,26 +136,29 @@ public class SRegistrarHotel extends HttpServlet {
 
                 //Fill bImagen                
                 bImagen.setUrl(nombreImagen);
-                bImagen.setTitulo(mrequest.getParameter("title_img" + i));
-                bImagen.setDescripcion(mrequest.getParameter("description_img" + i));
                 bImagen.setIdproducto(idproducto);
 
                 ((UploadFile) mrequest.getFiles().get("file" + i)).setFileName(nombreImagen);
+
                 UploadFile file = (UploadFile) files.get("file" + i);
                 upBean.store(mrequest, "file" + i);
 
-                System.out.println(" file names" + i + " " + file.getFileName());
+               // System.out.println(" file names" + i + " " + file.getFileName());
                 //lista de imagenes
                 listImagenes.add(bImagen);
-
             }
 
-            bHotel.setbGeometry(bGeometry);
+
+            bHotel.setGeometry(bGeometry);
             bHotel.setImagenes(listImagenes);
 
+            bHotel.print();
+
             managerHotel.registrarHotel(bHotel);
-            sesion.setAttribute("conf", "conf");
-            response.sendRedirect("admin/registrar.jsp");
+            //sesion.setAttribute("conf", "conf");
+            //response.sendRedirect("admin/registrar.jsp");
+            
+            response.sendRedirect("admin/confirm.html");
 
         } catch (Exception ex) {
             request.setAttribute("message", "There was an error: " + ex.getMessage());

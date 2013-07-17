@@ -80,19 +80,22 @@ public class SRegistrarRestaurant extends HttpServlet {
         try {
             //Datos Producto
             bRestaurant.setIdproducto(idproducto);
-            bRestaurant.setNombre(mrequest.getParameter("name"));
+            bRestaurant.setNombre(mrequest.getParameter("nombre"));
             bRestaurant.setClase(clase);
             bRestaurant.setEstado(estado);
 
             //Hotel
             bRestaurant.setIdrestaurant(idrestaurant);
-            bRestaurant.setCategoria(mrequest.getParameter("category"));
-            bRestaurant.setDescripcion(mrequest.getParameter("description"));
-            bRestaurant.setDireccion(mrequest.getParameter("direction"));
-            bRestaurant.setTelefono(mrequest.getParameter("phone"));
-            bRestaurant.setSitio(mrequest.getParameter("site"));
-            bRestaurant.setHora_aten(mrequest.getParameter("opening_hours"));
-            bRestaurant.setEspecialidad(mrequest.getParameter("especial"));
+            bRestaurant.setCategoria(mrequest.getParameter("categoria"));
+             bRestaurant.setTipo(mrequest.getParameter("tipo"));
+            bRestaurant.setDescripcion(mrequest.getParameter("descripcion"));
+            bRestaurant.setDireccion(mrequest.getParameter("direccion"));
+            bRestaurant.setTelefono(mrequest.getParameter("telefono"));
+            bRestaurant.setSitio_web(mrequest.getParameter("sitio_web"));
+            bRestaurant.setHorario_de_atencion(mrequest.getParameter("horario_de_atencion"));
+            bRestaurant.setEspecialidad(mrequest.getParameter("especialidad"));
+              bRestaurant.setPrecio_promedio(mrequest.getParameter("precio_promedio"));
+            bRestaurant.setFormas_de_pago(mrequest.getParameter("formas_de_pago"));
             // Geometry            
             bGeometry.setLatitud(Double.parseDouble(mrequest.getParameter("lat")));
             bGeometry.setLongitud(Double.parseDouble(mrequest.getParameter("lon")));
@@ -113,8 +116,8 @@ public class SRegistrarRestaurant extends HttpServlet {
                 //Fill bImagen
                 //bImagen.setId(id);
                 bImagen.setUrl(nombreImagen);
-                bImagen.setTitulo(mrequest.getParameter("title_img" + i));
-                bImagen.setDescripcion(mrequest.getParameter("description_img" + i));
+              //  bImagen.setTitulo(mrequest.getParameter("title_img" + i));
+               // bImagen.setDescripcion(mrequest.getParameter("description_img" + i));
                 bImagen.setIdproducto(idproducto);
 
                 ((UploadFile) mrequest.getFiles().get("file" + i)).setFileName(nombreImagen);
@@ -126,10 +129,11 @@ public class SRegistrarRestaurant extends HttpServlet {
             }
 
             bRestaurant.setImagenes(listImagenes);
-
-            managerRestaurant.registrarrestaurant(bRestaurant);
-            sesion.setAttribute("conf", "conf");
-            response.sendRedirect("admin/registrar.jsp");
+            bRestaurant.print();
+           managerRestaurant.registrarrestaurant(bRestaurant);
+            ///sesion.setAttribute("conf", "conf");
+            //response.sendRedirect("admin/registrar.jsp");
+             response.sendRedirect("admin/confirm.html");
         } catch (Exception ex) {
             request.setAttribute("message", "There was an error: " + ex.getMessage());
             System.out.println("Error" + ex.getMessage());

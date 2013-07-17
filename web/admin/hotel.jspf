@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">                  
             <div class="well span8" align="center">
-                <h4> Registrar planta turística- Hotel</h4>
+                <h4> Registrar planta turística - Hotel</h4>
                 <div class="container-fluid">
                     <div class="row-fluid">
                         <div class="span4">Nombre </div>
@@ -27,7 +27,7 @@
                     <div class="row-fluid">
                         <div class="span4">Descripción</div>
                         <div class="span4">
-                            <textarea  name='descripcion'  rows='8' cols='75' id='descripcion-h' align="left"></textarea>
+                            <textarea  name='descripcion'  rows='4' cols='75' id='descripcion-h' align="left"></textarea>
                         </div>
                     </div>
 
@@ -77,7 +77,7 @@
     <div class="container">                         
         <div class="row">                       
             <div class="well span8" align="center">
-                <h4>Localización del hotel</h4>
+                <h4>Ubicación</h4>
                 <div class="container-fluid">
                     <div class="row-fluid">                            
                         <div class="span2"><input type="checkbox" class='chek_lat_lon' id='chek_lat_lon-h' name="chek_lat_lon" value=''></div>
@@ -123,7 +123,7 @@
     <div class="container">
         <div class="row"> 
             <div class="well span8 file_upload" align="center" id='f1-h'>  
-                <h4>Galería de Imágenes del Hotel</h4>
+                <h4>Galería de Imágenes</h4>
                 <div class='well file_upload' id='f1-h'>
                     <input name='file1' type='file' id='file_img1-h' required/>
                 </div>

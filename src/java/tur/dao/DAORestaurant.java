@@ -41,23 +41,43 @@ public class DAORestaurant {
 
     public void registrarrestaurant(BRestaurant bRestaurant) {
 
-
-//SELECT insert_restaurant('4p', 'Nino', 'Restaurant', true, '4pre' , '2 Tenedores', 'Restaurant bueno', 'Parque de las marical', '310225','www..w.w.','de lunes a viernes', 'Puca Picante',-74.265, -12.9845)
-
-
         try {
-            String sql = "SELECT insert_restaurant('" + bRestaurant.getIdproducto() + "',"
+            /*
+         insert_restaurant(idproducto character(10),
+				          nombre character(100),
+				          clase character(50),
+				          estado boolean,				          
+					  idrestaurant varchar(10),
+					  categoria character(20),
+					  tipo character(40),
+					  descripcion TEXT,
+					  direccion character(100),   
+					  telefono character(50),
+					  sitio_web character(100),
+					  horario_de_atencion character(100),  
+					  especialidad character(100),
+					  precio_promedio character(100),
+					  formas_de_pago character(100),					
+					  lat numeric,
+					  lon numeric
+				           )
+             */
+            String sql = "SELECT insert_restaurant('" 
+                    + bRestaurant.getIdproducto() + "',"
                     + " '" + bRestaurant.getNombre() + "',"
                     + " '" + bRestaurant.getClase() + "', "
                     + bRestaurant.isEstado() + ", "
                     + "'" + bRestaurant.getIdrestaurant() + "' ,"
                     + " '" + bRestaurant.getCategoria() + "',"
+                    + " '" + bRestaurant.getTipo()+ "',"
                     + " '" + bRestaurant.getDescripcion() + "', "
                     + "'" + bRestaurant.getDireccion() + "', "
                     + "'" + bRestaurant.getTelefono() + "',"
-                    + "'" + bRestaurant.getSitio() + "',"
-                    + "'" + bRestaurant.getHora_aten() + "',"
+                    + "'" + bRestaurant.getSitio_web()+ "',"
+                    + "'" + bRestaurant.getHorario_de_atencion()+ "',"
                     + "'" + bRestaurant.getEspecialidad() + "',"
+                      + "'" + bRestaurant.getPrecio_promedio()+ "',"
+                    + "'" + bRestaurant.getFormas_de_pago()+ "',"
                     + bRestaurant.getGeometry().getLatitud() + ", "
                     + bRestaurant.getGeometry().getLongitud() + ");";
 
@@ -65,17 +85,15 @@ public class DAORestaurant {
             String sql_img = "";
             for (int i = 0; i < bRestaurant.getImagenes().size(); i++) {
 
-                sql_img += "INSERT INTO imagen(url, titulo, decripcion, idproducto) "
+                sql_img += "INSERT INTO imagen(url,idproducto) "
                         + "VALUES ('" + bRestaurant.getImagenes().get(i).getUrl()
-                        + "','" + bRestaurant.getImagenes().get(i).getTitulo()
-                        + "','" + bRestaurant.getImagenes().get(i).getDescripcion()
                         + "', '" + bRestaurant.getImagenes().get(i).getIdproducto() + "');";
             }
 
 
 
             sql = sql + sql_img;
-            System.out.println("SQL" + sql);
+            System.out.println("SQL==========: " + sql);
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
             /*pstmt.executeQuery();

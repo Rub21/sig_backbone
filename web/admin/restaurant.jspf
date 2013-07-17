@@ -3,18 +3,18 @@
     <div class="container">
         <div class="row">                  
             <div class="well span8" align="center">
-                <h4> Generalidades de Planta Turística - Restaurant</h4>
+                <h4> Registrar planta turística - Restaurant</h4>
                 <div class="container-fluid">
                     <div class="row-fluid">
-                        <div class="span4">Nombre del Servico </div>
+                        <div class="span4">Nombre</div>
                         <div class="span4">
-                            <input type='text'  name='name' value=''  align="left" id='name-re' placeholder="" required/>
+                            <input type='text'  name='nombre' value=''  align="left" id='name-re' placeholder="" required/>
                         </div>
                     </div>
                     <div class="row-fluid">
                         <div class="span4 left">Categoria</div>
                         <div class="span4">
-                            <select name='category' id='category-re' align="left" >
+                            <select name='categoria' id='category-re' align="left" >
                                 <option value='Sin Categoria'>Sin Categoria</option>
                                 <option value='1 Tenedor'>1 Tenedor</option>
                                 <option value='2 Tenedores'>2 Tenedores</option>
@@ -22,42 +22,68 @@
                                 <option value='4 Tenedores'>4 Tenedores</option>
                             </select>
                         </div>
-                    </div>                     
+                    </div>  
+
+                    <div class="row-fluid">
+                        <div class="span4 left">Tipo</div>
+                        <div class="span4">
+                            <select name='tipo' id='tipo-re' align="left" >
+                                <option value='Comida típica  y nacional'>Comida típica  y nacional</option>
+                                <option value='Comida cacera'>Comida cacera</option>
+                                <option value='Pollos a la brasa  y parrillas'>Pollos a la brasa  y parrillas</option>
+                                <option value='Pizas y pastas'>Pizas y pastas</option>
+                                <option value='Comida vegetariana'>Comida vegetariana</option>
+                                <option value='Desayuno y lonches'>Desayuno y lonches</option>
+                            </select>
+                        </div>
+                    </div>  
                     <div class="row-fluid">
                         <div class="span4">Descripción</div>
                         <div class="span4">
-                            <textarea  name='description'  rows='8' cols='75' id='description-re' align="left"></textarea>
+                            <textarea  name='descripcion'  rows='4' cols='75' id='descripcion-re' align="left"></textarea>
                         </div>
                     </div>
                     <div class="row-fluid">
                         <div class="span4">Direción</div>
                         <div class="span4">
-                            <input type='text'  name='direction' value=''  align="left" id='name-re' placeholder="Ingrese Direción del Servicio" />
+                            <input type='text'  name='direccion' value=''  align="left" id='direccion-re' placeholder="" />
                         </div>
                     </div>
                     <div class="row-fluid">
                         <div class="span4"> Telefono</div>
                         <div class="span4">
-                            <input type='text'  name='phone' value=''  align="left" id='name-re' placeholder="Ingrese Telefono del Servicio" />
+                            <input type='text'  name='telefono' value=''  align="left" id='telefono-re' placeholder="Ejm:31-1234, #213254, 966036830" />
                         </div>
                     </div>
 
                     <div class="row-fluid">
                         <div class="span4">Sitio Web</div>
                         <div class="span4">
-                            <input type='text'  name='site' value=''  align="left" id='name-re' placeholder="Ingrese Direción del Sitio Web" />
+                            <input type='text'  name='sitio_web' value=''  align="left" id='sitio_web-re' placeholder="" />
                         </div>
                     </div>
                     <div class="row-fluid">
-                        <div class="span4">Horario de Atención</div>
+                        <div class="span4">Horario de atención</div>
                         <div class="span4">
-                            <input type='text'  name='opening_hours' value=''  align="left" id='name-re' placeholder="Ingrese Horario de Atención" />
+                            <input type='text'  name='horario_de_atencion' value=''  align="left" id='horario_de_atencion-re' placeholder="" />
                         </div>
                     </div>
                     <div class="row-fluid">
-                        <div class="span4">Especialidad</div>
+                        <div class="span4">Especialidades</div>
                         <div class="span4">
-                            <input type='text'  name='especial' value=''  align="left" id='name-re' placeholder="Especialida en Platillo" />
+                            <input type='text'  name='especialidad' value=''  align="left" id='especialidad-re' placeholder="" />
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span4">Precio promedio</div>
+                        <div class="span4">
+                            <input type='text'  name='precio_promedio' value=''  align="left" id='precio_promedio-re' placeholder="" />
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span4">Formas de pago</div>
+                        <div class="span4">
+                            <input type='text'  name='formas_de_pago' value=''  align="left" id='formas_de_pago-re' placeholder="" />
                         </div>
                     </div>
                 </div>   
@@ -68,7 +94,7 @@
     <div class="container">                         
         <div class="row">                       
             <div class="well span8" align="center">
-                <h4>Ubicación del Servicio</h4>
+                <h4>Ubicación</h4>
                 <div class="container-fluid">
                     <div class="row-fluid">                            
                         <div class="span2"><input type="checkbox" class='chek_lat_lon' id='chek_lat_lon-re' name="chek_lat_lon" value=''></div>
@@ -114,17 +140,11 @@
     <div class="container">
         <div class="row"> 
             <div class="well span8 file_upload" align="center">  
-                <h4>Imagenes</h4>        
+                <h4>Galería de Imágenes</h4>        
                 <div class='well file_upload' id='f1-re'>
                     <input name='file1' type='file' id='file_img1-re'required/>
-                    <input type='text' name='title_img1' value=''  id='title_img1-re' placeholder='Nombre de Imagen 1' />
-                    <textarea class="span8" name='description_img1' rows='2' cols='75'  id='description_img1-re'placeholder='Descripcion de la imagen 1'></textarea>
                 </div>
-                <div class='well file_upload' id='f2-re' >
-                    <input name='file2' type='file' id='file_img2-re' required/>
-                    <input type='text' name='title_img2' value=''  id='title_img2-re' placeholder='Nombre de Imagen 2' />
-                    <textarea class="span8" name='description_img2' rows='2' cols='75'  id='description_img2-re'placeholder='Descripcion de la imagen 2'></textarea>
-                </div>
+
                 <div id='file_tools-re'>
                     <img src='img/file_add.png' id='add_file-re' title='Add new input'/>
                     <img src='img/file_del.png' id='del_file-re' title='Delete'/>

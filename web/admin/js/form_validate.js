@@ -36,7 +36,7 @@ $(document).ready(function() {
             direccion: {required: true, maxlength: 100},
             telefono: {required: true, maxlength: 50},
             sitio_web: {url: true, maxlength: 100},
-            correo_electronico: {email: true,maxlength: 100},
+            correo_electronico: {email: true, maxlength: 100},
             precio_de_habitacion: {required: true, maxlength: 50},
             formas_de_pago: {maxlength: 100},
             lat: {required: true, number: true},
@@ -45,12 +45,12 @@ $(document).ready(function() {
 
         },
         messages: {
-            nombre: "Por favor, ingrese el nombre",
+            nombre: "Ingrese el nombre",
             descripcion: "Ingrese un pequeña descripción",
             direccion: "Ingrese el campo, menos de 100 caracteres",
             telefono: "Ingrese el campo, menos de 50 caracteres",
             sitio_web: "Escriba una URL correcta,menos de 100 caracteres",
-            correo_electronico:"Ingrese correo electronico correcto,menos de 100 caracteres",
+            correo_electronico: "Ingrese correo electronico correcto,menos de 100 caracteres",
             precio_de_habitacion: "Ingrese el campo, menos de 50 caracteres",
             formas_de_pago: "Ingrese dato correcto, menos de 100 caracteres",
             lat: "Ingrese numeros",
@@ -62,22 +62,35 @@ $(document).ready(function() {
 
 
 
-    /* $("#form-re").validate({
-     rules: {
-     name: {required: true, maxlength: 100},         
-     direction:{maxlength: 100},      
-     lat: {required: true, number: true},
-     lon: {required: true, number: true
-     }
-     },
-     messages: {
-     name: "Por favor, ingrese el nombre",
-     direction: "Por favor,  escriba menos de 100 caracteres.",    
-     lat: "Por favor, ingrese numeros",
-     lon: "Por favor, ingrese numeros"
-     }
-     
-     });*/
+    $("#form-re").validate({
+        rules: {
+            nombre: {required: true, maxlength: 100},
+            descripcion: {required: true, maxlength: 200},
+            direccion: {required: true, maxlength: 100},
+            telefono: {required: true, maxlength: 50},
+            sitio_web: {url: true, maxlength: 100},
+            horario_de_atencion: {required: true, maxlength: 100},
+            especialidad: {maxlength: 100},
+            precio_promedio: {maxlength: 100},
+            formas_de_pago: {maxlength: 100},
+            lat: {required: true, number: true},
+            lon: {required: true, number: true}
+        },
+        messages: {
+            nombre: "Ingrese el nombre",
+            descripcion: "Ingrese un pequeña descripción",
+            direccion: "Ingrese el campo, menos de 100 caracteres",
+            telefono: "Ingrese el campo, menos de 50 caracteres",
+            sitio_web: "Escriba una URL correcta,menos de 100 caracteres",
+            horario_de_atencion: "Ingrese el horario de atención",
+            especialidad: "Ingrese menos de 100 caracteres",
+            precio_promedio: "Ingrese menos de 100 caracteres",
+            formas_de_pago: "Ingrese menos de 100 caracteres",
+            lat: "Por favor, ingrese numeros",
+            lon: "Por favor, ingrese numeros"
+        }
+
+    });
 
 
 });

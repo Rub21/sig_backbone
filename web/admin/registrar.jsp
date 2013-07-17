@@ -21,7 +21,7 @@
 <%} else {%>
 <script>
 
-    alert('Los Datos Fueron Registrados');
+  //  alert('Los Datos Fueron Registrados');
 
 </script>
 <%}

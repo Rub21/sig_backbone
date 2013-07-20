@@ -113,7 +113,10 @@ public class DAOTransporte {
         
         try {
             
-            String sql = "SELECT idproducto, nombre, clase, estado, idtransporte, descripcion, direccion, telefono,sitio, hora_aten, lat, lon FROM select_transporte;";
+            String sql = "SELECT idproducto, nombre, clase, estado, idtransporte, descripcion, \n" +
+"       direccion, telefono, sitio_web, horario_de_atencion, horario_de_salida, \n" +
+"       destinos, lat, lon\n" +
+"  FROM select_transporte;";
             //System.out.println("--:" + sql);
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
@@ -131,8 +134,10 @@ public class DAOTransporte {
                 bTransporte.setDescripcion(rs.getString("descripcion"));
                 bTransporte.setDireccion(rs.getString("direccion"));
                 bTransporte.setTelefono(rs.getString("telefono"));
-                bTransporte.setSitio(rs.getString("sitio"));
-                bTransporte.setHora_aten(rs.getString("hora_aten"));
+                bTransporte.setSitio_web(rs.getString("sitio_web"));
+                bTransporte.setHorario_de_atencion(rs.getString("horario_de_atencion"));
+                bTransporte.setHorario_de_salida(rs.getString("horario_de_salida"));
+                bTransporte.setDestinos(rs.getString("horario_de_salida"));
 
                 //Geometry
                 bGeometry.setLatitud(rs.getDouble("lat"));
@@ -143,7 +148,7 @@ public class DAOTransporte {
                 //Imagen
                 bTransporte.setImagenes(listarimagen(bTransporte.getIdproducto()));
                 //destion
-                bTransporte.setDestinos(listardestinos(bTransporte.getIdtransporte()));
+               // bTransporte.setDestinos(listardestinos(bTransporte.getIdtransporte()));
                 
                 list.add(bTransporte);
             }
@@ -159,15 +164,13 @@ public class DAOTransporte {
         
         ArrayList<BImagen> list = new ArrayList<BImagen>();
         try {
-            String sql = "SELECT url, titulo, decripcion, idproducto  FROM imagen where idproducto='" + id + "';";
+            String sql = "SELECT url,  idproducto  FROM imagen where idproducto='" + id + "';";
             //System.out.println("-----------SQL IMAGEN-----" + sql);
             pstmti = conni.prepareStatement(sql);
             rsi = pstmti.executeQuery();
             while (rsi.next()) {
                 BImagen bImagen = new BImagen();
-                bImagen.setUrl(rsi.getString("url"));
-                bImagen.setTitulo(rsi.getString("titulo"));
-                bImagen.setDescripcion(rsi.getString("decripcion"));
+                bImagen.setUrl(rsi.getString("url"));   
                 bImagen.setIdproducto(rsi.getString("idproducto"));
                 list.add(bImagen);
             }
@@ -180,7 +183,7 @@ public class DAOTransporte {
         return list;
         
     }
-    
+    /*
     public ArrayList<BDestino> listardestinos(String id) {
         
         ArrayList<BDestino> list = new ArrayList<BDestino>();
@@ -203,5 +206,5 @@ public class DAOTransporte {
         }
         return list;
         
-    }
+    }*/
 }

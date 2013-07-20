@@ -14,10 +14,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import tur.bean.BGeometry;
-import tur.bean.BHabitacion;
+
 import tur.bean.BHotel;
 import tur.bean.BImagen;
-import tur.bean.BPromocion;
+
 import tur.bean.BServiciosAdicional;
 
 /**
@@ -50,40 +50,40 @@ public class DAOHotel {
     }
 
     public void registrarhotel(BHotel bHotel) {
-        
+
         try {
-                       
+
             /*            
-            insert_hotel(idproducto character(10),
-				          nombre character(100),
-					  idhotel varchar(10),
-					  categoria character(50),
-					  desccripcion text, 
-					  direccion character(100),   
-					  telefono character(50),
-					  sitio_web character(100),
-					  correo_electronico character(100),
-					  precio_de_habitacion text,  
-					  formas_de_pago character(100),					  
-					  lat numeric,
-					  lon numeric
-				           )
+             insert_hotel(idproducto character(10),
+             nombre character(100),
+             idhotel varchar(10),
+             categoria character(50),
+             desccripcion text, 
+             direccion character(100),   
+             telefono character(50),
+             sitio_web character(100),
+             correo_electronico character(100),
+             precio_de_habitacion text,  
+             formas_de_pago character(100),					  
+             lat numeric,
+             lon numeric
+             )
             
-            */
-            
+             */
+
             String sql = "SELECT insert_hotel('" + bHotel.getIdproducto() + "',"
                     + " '" + bHotel.getNombre() + "',"
                     + " '" + bHotel.getClase() + "', "
                     + bHotel.isEstado() + ", "
                     + "'" + bHotel.getIdhotel() + "' ,"
-                    + " '" + bHotel.getCategoria() + "'," 
-                    + "'" + bHotel.getDescripcion()+ "', "
+                    + " '" + bHotel.getCategoria() + "',"
+                    + "'" + bHotel.getDescripcion() + "', "
                     + "'" + bHotel.getDireccion() + "', "
                     + "'" + bHotel.getTelefono() + "',"
                     + "'" + bHotel.getSitio_web() + "',"
-                    + "'" + bHotel.getCorreo_electronico()+ "',"
-                    + "'" + bHotel.getPrecio_de_habitacion()+ "',"
-                    + "'" + bHotel.getFormas_de_pago()+ "',"
+                    + "'" + bHotel.getCorreo_electronico() + "',"
+                    + "'" + bHotel.getPrecio_de_habitacion() + "',"
+                    + "'" + bHotel.getFormas_de_pago() + "',"
                     + bHotel.getGeometry().getLatitud() + ", "
                     + bHotel.getGeometry().getLongitud() + ");";
 
@@ -92,21 +92,21 @@ public class DAOHotel {
             for (int i = 0; i < bHotel.getImagenes().size(); i++) {
 
                 sql_img += "INSERT INTO imagen(url, idproducto) "
-                        + "VALUES ('" + bHotel.getImagenes().get(i).getUrl()        
+                        + "VALUES ('" + bHotel.getImagenes().get(i).getUrl()
                         + "', '" + bHotel.getImagenes().get(i).getIdproducto() + "');";
             }
 
-           //SERVICIO
+            //SERVICIO
             String sql_ser = "";
             for (int i = 0; i < bHotel.getbServiciosAdicional().size(); i++) {
 
                 sql_ser += "INSERT INTO servicion_adicional(tipo, idproducto) "
-                        + "VALUES ('" + bHotel.getbServiciosAdicional().get(i).getTipo() + "', "                        
+                        + "VALUES ('" + bHotel.getbServiciosAdicional().get(i).getTipo() + "', "
                         + "'" + bHotel.getbServiciosAdicional().get(i).getIdproducto() + "');";
             }
-         
 
-            sql = sql + sql_img + sql_ser ;
+
+            sql = sql + sql_img + sql_ser;
             System.out.println("SQ=======================L" + sql);
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
@@ -125,7 +125,10 @@ public class DAOHotel {
 
         try {
 
-            String sql = "SELECT idproducto, nombre, clase, estado, idhotel, categoria, descripcion, direccion, telefono, sitio,hora_aten, lat, lon FROM select_hotel";
+            String sql = "SELECT idproducto, nombre, clase, estado, idhotel, categoria, descripcion, \n" +
+                            "       direccion, telefono, sitio_web, correo_electronico, precio_de_habitacion, \n" +
+                            "       formas_de_pago, lat, lon\n" +
+                            "  FROM select_hotel;";
             //System.out.println("--:" + sql);
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
@@ -145,8 +148,11 @@ public class DAOHotel {
                 bHotel.setDescripcion(rs.getString("descripcion"));
                 bHotel.setDireccion(rs.getString("direccion"));
                 bHotel.setTelefono(rs.getString("telefono"));
-                bHotel.setSitio_web(rs.getString("sitio"));
-                bHotel.setHora_aten(rs.getString("hora_aten"));
+                bHotel.setSitio_web(rs.getString("sitio_web"));
+                bHotel.setCorreo_electronico(rs.getString("correo_electronico"));
+                bHotel.setPrecio_de_habitacion(rs.getString("precio_de_habitacion"));
+                
+                bHotel.setFormas_de_pago(rs.getString("formas_de_pago"));
 
 
                 //Geometry
@@ -154,16 +160,16 @@ public class DAOHotel {
                 bGeometry.setLongitud(rs.getDouble("lon"));
                 bGeometry.setIdproducto(rs.getString("idproducto"));
                 bGeometry.setCoordinates();
-                bHotel.setbGeometry(bGeometry);
+                bHotel.setGeometry(bGeometry);
 
                 //Imagen
                 bHotel.setImagenes(listarimagen(bHotel.getIdproducto()));
                 //habitacion
-                bHotel.setbHabitacion(listarhabitacion(bHotel.getIdhotel()));
+               // bHotel.setbHabitacion(listarhabitacion(bHotel.getIdhotel()));
                 //servicoadicional
                 bHotel.setbServiciosAdicional(listarservicio(bHotel.getIdproducto()));
                 //promocion
-                bHotel.setbPromocion(listarpromocion(bHotel.getIdproducto()));
+               // bHotel.setbPromocion(listarpromocion(bHotel.getIdproducto()));
                 list.add(bHotel);
             }
 
@@ -181,7 +187,7 @@ public class DAOHotel {
 
         try {
 
-            String sql = "SELECT url, titulo, decripcion, idproducto  FROM imagen where idproducto='" + id + "';";
+            String sql = "SELECT url,idproducto  FROM imagen where idproducto='" + id + "';";
             System.out.println("-----------SQL IMAGEN-----" + sql);
             pstmti = conni.prepareStatement(sql);
             rsi = pstmti.executeQuery();
@@ -189,8 +195,6 @@ public class DAOHotel {
             while (rsi.next()) {
                 BImagen bImagen = new BImagen();
                 bImagen.setUrl(rsi.getString("url"));
-                bImagen.setTitulo(rsi.getString("titulo"));
-                bImagen.setDescripcion(rsi.getString("decripcion"));
                 bImagen.setIdproducto(rsi.getString("idproducto"));
                 list.add(bImagen);
             }
@@ -204,7 +208,7 @@ public class DAOHotel {
 
     }
 
-    public ArrayList<BHabitacion> listarhabitacion(String id) {
+  /*  public ArrayList<BHabitacion> listarhabitacion(String id) {
 
         ArrayList<BHabitacion> list = new ArrayList<BHabitacion>();
 
@@ -232,7 +236,7 @@ public class DAOHotel {
         }
         return list;
 
-    }
+    }*/
 
     public ArrayList<BServiciosAdicional> listarservicio(String id) {
 
@@ -240,7 +244,7 @@ public class DAOHotel {
 
         try {
 
-            String sql = "SELECT tipo, descripcion, idproducto  FROM servicion_adicional where idproducto='" + id + "';";
+            String sql = "SELECT tipo, idproducto  FROM servicion_adicional where idproducto='" + id + "';";
             //System.out.println("-----------SQL Servicio-----" + sql);
             pstmts = conns.prepareStatement(sql);
             rss = pstmts.executeQuery();
@@ -249,7 +253,6 @@ public class DAOHotel {
                 BServiciosAdicional bServiciosAdicional = new BServiciosAdicional();
 
                 bServiciosAdicional.setTipo(rss.getString("tipo"));
-                bServiciosAdicional.setDescripcion(rss.getString("descripcion"));
                 bServiciosAdicional.setIdproducto(rss.getString("idproducto"));
                 list.add(bServiciosAdicional);
             }
@@ -262,7 +265,7 @@ public class DAOHotel {
         return list;
 
     }
-
+/*
     public ArrayList<BPromocion> listarpromocion(String id) {
 
         ArrayList<BPromocion> list = new ArrayList<BPromocion>();
@@ -290,5 +293,5 @@ public class DAOHotel {
         }
         return list;
 
-    }
+    }*/
 }

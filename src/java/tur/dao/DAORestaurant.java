@@ -109,7 +109,10 @@ public class DAORestaurant {
     public List listarrestaurant() {
         List list = new LinkedList();
         try {
-            String sql = "SELECT idproducto, nombre, clase, estado, idrestaurant, categoria, descripcion, direccion, telefono,sitio, hora_aten, especialidad,lat, lon FROM select_restaurant;";
+            String sql = "SELECT idproducto, nombre, clase, estado, idrestaurant, categoria, tipo, \n" +
+"       descripcion, direccion, telefono, sitio_web, horario_de_atencion, \n" +
+"       especialidad, precio_promedio, formas_de_pago, lat, lon\n" +
+"  FROM select_restaurant;";
             //System.out.println("--:" + sql);
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
@@ -127,9 +130,12 @@ public class DAORestaurant {
                 bRestaurant.setDescripcion(rs.getString("descripcion"));
                 bRestaurant.setDireccion(rs.getString("direccion"));
                 bRestaurant.setTelefono(rs.getString("telefono"));
-                bRestaurant.setSitio(rs.getString("sitio"));
-                bRestaurant.setHora_aten(rs.getString("hora_aten"));
+                bRestaurant.setSitio_web(rs.getString("sitio_web"));
+                bRestaurant.setHorario_de_atencion(rs.getString("horario_de_atencion"));
                 bRestaurant.setEspecialidad(rs.getString("especialidad"));
+                bRestaurant.setPrecio_promedio(rs.getString("precio_promedio"));
+                bRestaurant.setFormas_de_pago(rs.getString("formas_de_pago"));
+                
                 //Geometry
                 bGeometry.setLatitud(rs.getDouble("lat"));
                 bGeometry.setLongitud(rs.getDouble("lon"));
@@ -152,40 +158,13 @@ public class DAORestaurant {
 
         ArrayList<BImagen> list = new ArrayList<BImagen>();
         try {
-            String sql = "SELECT url, titulo, decripcion, idproducto  FROM imagen where idproducto='" + id + "';";
+            String sql = "SELECT url,  idproducto  FROM imagen where idproducto='" + id + "';";
             System.out.println("-----------SQL IMAGEN-----" + sql);
             pstmti = conni.prepareStatement(sql);
             rsi = pstmti.executeQuery();
             while (rsi.next()) {
                 BImagen bImagen = new BImagen();
-                bImagen.setUrl(rsi.getString("url"));
-                bImagen.setTitulo(rsi.getString("titulo"));
-                bImagen.setDescripcion(rsi.getString("decripcion"));
-                bImagen.setIdproducto(rsi.getString("idproducto"));
-                list.add(bImagen);
-            }
-            pstmti.close();
-            rsi.close();
-
-        } catch (SQLException ex) {
-            System.out.println("Error en Listar Imagen: " + ex);
-        }
-        return list;
-
-    }
-        public ArrayList<BImagen> listardestinos(String id) {
-
-        ArrayList<BImagen> list = new ArrayList<BImagen>();
-        try {
-            String sql = "SELECT url, titulo, decripcion, idproducto  FROM imagen where idproducto='" + id + "';";
-            System.out.println("-----------SQL IMAGEN-----" + sql);
-            pstmti = conni.prepareStatement(sql);
-            rsi = pstmti.executeQuery();
-            while (rsi.next()) {
-                BImagen bImagen = new BImagen();
-                bImagen.setUrl(rsi.getString("url"));
-                bImagen.setTitulo(rsi.getString("titulo"));
-                bImagen.setDescripcion(rsi.getString("decripcion"));
+                bImagen.setUrl(rsi.getString("url"));     
                 bImagen.setIdproducto(rsi.getString("idproducto"));
                 list.add(bImagen);
             }

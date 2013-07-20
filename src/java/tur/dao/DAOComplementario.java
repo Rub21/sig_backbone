@@ -81,7 +81,7 @@ public class DAOComplementario {
 
         try {
 
-            String sql = "SELECT idproducto, nombre, clase, estado, idcomplementario,tipo, descripcion, direccion, telefono,sitio, hora_aten, lat, lon FROM select_complementario;";
+            String sql = "SELECT idproducto, nombre, clase, estado, idcomplementario, tipo,descripcion, direccion, telefono,sitio_web, horario_de_atencion, lat, lon FROM select_complementario;";
             //System.out.println("--:" + sql);
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
@@ -101,8 +101,8 @@ public class DAOComplementario {
                 bComplementario.setDescripcion(rs.getString("descripcion"));
                 bComplementario.setDireccion(rs.getString("direccion"));
                 bComplementario.setTelefono(rs.getString("telefono"));
-                bComplementario.setSitio_web(rs.getString("sitio"));
-                bComplementario.setHorario_de_atencion(rs.getString("hora_aten"));
+                bComplementario.setSitio_web(rs.getString("sitio_web"));
+                bComplementario.setHorario_de_atencion(rs.getString("horario_de_atencion"));
 
                 //Geometry
                 bGeometry.setLatitud(rs.getDouble("lat"));

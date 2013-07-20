@@ -46,23 +46,21 @@ public class DAOComplementario {
                     + " '" + bComplementario.getNombre() + "',"
                     + " '" + bComplementario.getClase() + "', "
                     + bComplementario.isEstado() + ", "
-                    + "'" + bComplementario.getIdcomplementario()+ "' ,"
+                    + "'" + bComplementario.getIdcomplementario() + "' ,"
                     + "'" + bComplementario.getTipo() + "' ,"
                     + " '" + bComplementario.getDescripcion() + "', "
                     + "'" + bComplementario.getDireccion() + "', "
                     + "'" + bComplementario.getTelefono() + "',"
-                    + "'" + bComplementario.getSitio() + "',"
-                    + "'" + bComplementario.getHora_aten() + "',"
+                    + "'" + bComplementario.getSitio_web() + "',"
+                    + "'" + bComplementario.getHorario_de_atencion() + "',"
                     + bComplementario.getGeometry().getLatitud() + ", "
                     + bComplementario.getGeometry().getLongitud() + ");";
 
             System.out.println(sql);
             String sql_img = "";
             for (int i = 0; i < bComplementario.getImagenes().size(); i++) {
-                sql_img += "INSERT INTO imagen(url, titulo, decripcion, idproducto) "
+                sql_img += "INSERT INTO imagen(url,  idproducto) "
                         + "VALUES ('" + bComplementario.getImagenes().get(i).getUrl()
-                        + "','" + bComplementario.getImagenes().get(i).getTitulo()
-                        + "','" + bComplementario.getImagenes().get(i).getDescripcion()
                         + "', '" + bComplementario.getImagenes().get(i).getIdproducto() + "');";
             }
             sql = sql + sql_img;
@@ -98,13 +96,13 @@ public class DAOComplementario {
                 bComplementario.setEstado(rs.getBoolean("estado"));
                 //Complementario
                 bComplementario.setIdcomplementario(rs.getString("idcomplementario"));
-                
+
                 bComplementario.setTipo(rs.getString("tipo"));
                 bComplementario.setDescripcion(rs.getString("descripcion"));
                 bComplementario.setDireccion(rs.getString("direccion"));
                 bComplementario.setTelefono(rs.getString("telefono"));
-                bComplementario.setSitio(rs.getString("sitio"));
-                bComplementario.setHora_aten(rs.getString("hora_aten"));
+                bComplementario.setSitio_web(rs.getString("sitio"));
+                bComplementario.setHorario_de_atencion(rs.getString("hora_aten"));
 
                 //Geometry
                 bGeometry.setLatitud(rs.getDouble("lat"));

@@ -84,30 +84,32 @@ public class SRegistrarTransporte extends HttpServlet {
         try {
             //Datos Producto
             bTransporte.setIdproducto(idproducto);
-            bTransporte.setNombre(mrequest.getParameter("name"));
+            bTransporte.setNombre(mrequest.getParameter("nombre"));
             bTransporte.setClase(clase);
             bTransporte.setEstado(estado);
 
             //Hotel
             bTransporte.setIdtransporte(idtransporte);
 
-            bTransporte.setDescripcion(mrequest.getParameter("description"));
-            bTransporte.setDireccion(mrequest.getParameter("direction"));
-            bTransporte.setTelefono(mrequest.getParameter("phone"));
-            bTransporte.setSitio(mrequest.getParameter("site"));
-            bTransporte.setHora_aten(mrequest.getParameter("opening_hours"));
-
+            bTransporte.setDescripcion(mrequest.getParameter("descripcion"));
+            bTransporte.setDireccion(mrequest.getParameter("direccion"));
+            bTransporte.setTelefono(mrequest.getParameter("telefono"));
+            bTransporte.setSitio_web(mrequest.getParameter("sitio_web"));
+            bTransporte.setHorario_de_atencion(mrequest.getParameter("horario_de_atencion"));
+            bTransporte.setHorario_de_salida(mrequest.getParameter("horario_de_salida"));
+            bTransporte.setDestinos(mrequest.getParameter("destinos"));
             //Destinos
-            ArrayList<BDestino> listdes = new ArrayList<BDestino>();
-            int num_destino = Integer.parseInt(mrequest.getParameter("num-destino"));
-            System.out.println("num_destino= " + num_destino);
-            for (int i = 1; i <= num_destino; i++) {
-                BDestino bDestino = new BDestino();
-                bDestino.setNombre(mrequest.getParameter("destino" + i));
-                bDestino.setIdtransporte(idtransporte);
-                listdes.add(bDestino);
-            }
-            bTransporte.setDestinos(listdes);
+
+            /*  ArrayList<BDestino> listdes = new ArrayList<BDestino>();
+             int num_destino = Integer.parseInt(mrequest.getParameter("num-destino"));
+             System.out.println("num_destino= " + num_destino);
+             for (int i = 1; i <= num_destino; i++) {
+             BDestino bDestino = new BDestino();
+             bDestino.setNombre(mrequest.getParameter("destino" + i));
+             bDestino.setIdtransporte(idtransporte);
+             listdes.add(bDestino);
+             }
+             bTransporte.setDestinos(listdes)*/
 
 
             // Geometry            
@@ -130,8 +132,6 @@ public class SRegistrarTransporte extends HttpServlet {
                 //Fill bImagen
                 //bImagen.setId(id);
                 bImagen.setUrl(nombreImagen);
-                bImagen.setTitulo(mrequest.getParameter("title_img" + i));
-                bImagen.setDescripcion(mrequest.getParameter("description_img" + i));
                 bImagen.setIdproducto(idproducto);
 
                 ((UploadFile) mrequest.getFiles().get("file" + i)).setFileName(nombreImagen);
@@ -144,10 +144,9 @@ public class SRegistrarTransporte extends HttpServlet {
             bTransporte.setImagenes(listImagenes);
 
 
-
+            bTransporte.print();
             managerTransporte.registrartransporte(bTransporte);
-            sesion.setAttribute("conf", "conf");
-            response.sendRedirect("admin/registrar.jsp");
+            response.sendRedirect("admin/confirm.html");
 
 
 

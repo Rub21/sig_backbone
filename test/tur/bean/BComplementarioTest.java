@@ -181,7 +181,7 @@ public class BComplementarioTest {
         System.out.println("getSitio");
         BComplementario instance = new BComplementario();
         String expResult = "";
-        String result = instance.getSitio();
+        String result = instance.getSitio_web();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -195,7 +195,7 @@ public class BComplementarioTest {
         System.out.println("setSitio");
         String sitio = "";
         BComplementario instance = new BComplementario();
-        instance.setSitio(sitio);
+        instance.setSitio_web(sitio);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -208,7 +208,7 @@ public class BComplementarioTest {
         System.out.println("getHora_aten");
         BComplementario instance = new BComplementario();
         String expResult = "";
-        String result = instance.getHora_aten();
+        String result = instance.getHorario_de_atencion();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -222,7 +222,7 @@ public class BComplementarioTest {
         System.out.println("setHora_aten");
         String hora_aten = "";
         BComplementario instance = new BComplementario();
-        instance.setHora_aten(hora_aten);
+        instance.setHorario_de_atencion(hora_aten);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

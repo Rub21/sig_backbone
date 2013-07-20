@@ -10,15 +10,15 @@ import java.util.ArrayList;
  *
  * @author ruben
  */
-public class BComplementario extends BProducto{
+public class BComplementario extends BProducto {
 
     private String idcomplementario;
     private String tipo;
     private String descripcion;
     private String direccion;
     private String telefono;
-    private String sitio;
-    private String hora_aten;
+    private String sitio_web;
+    private String horario_de_atencion;
     private BGeometry geometry;
     private ArrayList<BImagen> imagenes;
 
@@ -29,8 +29,6 @@ public class BComplementario extends BProducto{
     public void setIdcomplementario(String idcomplementario) {
         this.idcomplementario = idcomplementario;
     }
-
-
 
     public String getTipo() {
         return tipo;
@@ -64,20 +62,20 @@ public class BComplementario extends BProducto{
         this.telefono = telefono;
     }
 
-    public String getSitio() {
-        return sitio;
+    public String getSitio_web() {
+        return sitio_web;
     }
 
-    public void setSitio(String sitio) {
-        this.sitio = sitio;
+    public void setSitio_web(String sitio_web) {
+        this.sitio_web = sitio_web;
     }
 
-    public String getHora_aten() {
-        return hora_aten;
+    public String getHorario_de_atencion() {
+        return horario_de_atencion;
     }
 
-    public void setHora_aten(String hora_aten) {
-        this.hora_aten = hora_aten;
+    public void setHorario_de_atencion(String horario_de_atencion) {
+        this.horario_de_atencion = horario_de_atencion;
     }
 
     public BGeometry getGeometry() {
@@ -95,5 +93,19 @@ public class BComplementario extends BProducto{
     public void setImagenes(ArrayList<BImagen> imagenes) {
         this.imagenes = imagenes;
     }
-    
+
+    public void print() {
+
+        System.out.println("idhotel :" + getIdcomplementario());
+        System.out.println("Nombre :" + getNombre());
+        System.out.println("Descripcion :" + getDescripcion());
+        System.out.println("direccion :" + getDireccion());
+        System.out.println("telefono :" + getTelefono());
+        System.out.println("Sitio web" + getSitio_web());
+        System.out.println("Horario de Atencion :" + getHorario_de_atencion());
+        System.out.println("Latitud :" + getGeometry().getLatitud());
+        System.out.println("Longitud :" + getGeometry().getLongitud());
+        System.out.println("Imagenes" + getImagenes().size());
+
+    }
 }

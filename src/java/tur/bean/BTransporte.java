@@ -12,16 +12,16 @@ import java.util.ArrayList;
  */
 public class BTransporte extends BProducto {
 
-    private String idtransporte;  
+    private String idtransporte;
     private String descripcion;
     private String direccion;
     private String telefono;
-    private String sitio;
-    private String hora_aten;
-
+    private String sitio_web;
+    private String horario_de_atencion;
+    private String horario_de_salida;
+    private String destinos;
     private BGeometry geometry;
     private ArrayList<BImagen> imagenes;
-    private ArrayList<BDestino> destinos;
 
     public String getIdtransporte() {
         return idtransporte;
@@ -30,8 +30,6 @@ public class BTransporte extends BProducto {
     public void setIdtransporte(String idtransporte) {
         this.idtransporte = idtransporte;
     }
-
-
 
     public String getDescripcion() {
         return descripcion;
@@ -57,23 +55,37 @@ public class BTransporte extends BProducto {
         this.telefono = telefono;
     }
 
-    public String getSitio() {
-        return sitio;
+    public String getSitio_web() {
+        return sitio_web;
     }
 
-    public void setSitio(String sitio) {
-        this.sitio = sitio;
+    public void setSitio_web(String sitio_web) {
+        this.sitio_web = sitio_web;
     }
 
-    public String getHora_aten() {
-        return hora_aten;
+    public String getHorario_de_atencion() {
+        return horario_de_atencion;
     }
 
-    public void setHora_aten(String hora_aten) {
-        this.hora_aten = hora_aten;
+    public void setHorario_de_atencion(String horario_de_atencion) {
+        this.horario_de_atencion = horario_de_atencion;
     }
 
+    public String getHorario_de_salida() {
+        return horario_de_salida;
+    }
 
+    public void setHorario_de_salida(String horario_de_salida) {
+        this.horario_de_salida = horario_de_salida;
+    }
+
+    public String getDestinos() {
+        return destinos;
+    }
+
+    public void setDestinos(String destinos) {
+        this.destinos = destinos;
+    }
 
     public BGeometry getGeometry() {
         return geometry;
@@ -91,13 +103,20 @@ public class BTransporte extends BProducto {
         this.imagenes = imagenes;
     }
 
-    public ArrayList<BDestino> getDestinos() {
-        return destinos;
-    }
+    public void print() {
 
-    public void setDestinos(ArrayList<BDestino> destinos) {
-        this.destinos = destinos;
+        System.out.println("idhotel :" + getIdtransporte());
+         System.out.println("Nombre :" + getNombre());
+        System.out.println("Descripcion :" + getDescripcion());
+        System.out.println("direccion :" + getDireccion());
+        System.out.println("telefono :" + getTelefono());
+        System.out.println("Sitio web"+getSitio_web());
+        System.out.println("Horario de Atencion :" + getHorario_de_atencion());
+        System.out.println("Horario de salida :" +getHorario_de_salida());
+        System.out.println("Destinos :" + getDestinos());    
+        System.out.println("Latitud :" + getGeometry().getLatitud());
+        System.out.println("Longitud :" + getGeometry().getLongitud());
+        System.out.println("Imagenes" + getImagenes().size());
+
     }
-    
-    
 }

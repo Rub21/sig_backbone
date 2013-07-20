@@ -47,8 +47,24 @@ public class DAOTransporte {
     
     public void registrartransporte(BTransporte bTransporte) {
 
-//SELECT insert_transporte('16p', 'Cruz del sur', 'Transporte', true, '16pre' , 'muy caros', 'Jr Mariscal Caceres', '310225','www..w.w.','de lunes a viernes',-74.265, -12.9845)
-
+/*
+ insert_transporte(idproducto character(10),
+				          nombre character(100),
+				          clase character(50),
+				          estado boolean,
+					  idtransporte varchar(10),
+					  descripcion TEXT,
+					  direccion character(100),   
+					  telefono character(50),
+					  sitio_web character(100),
+					  horario_de_atencion character(100),  
+					  horario_de_salida character(100), 
+					  destinos TEXT,								  
+					  --idproducto character(10),
+					  lat numeric,
+					  lon numeric
+				           )
+ */
         try {
             String sql = "SELECT insert_transporte('" + bTransporte.getIdproducto() + "',"
                     + " '" + bTransporte.getNombre() + "',"
@@ -58,27 +74,28 @@ public class DAOTransporte {
                     + " '" + bTransporte.getDescripcion() + "', "
                     + "'" + bTransporte.getDireccion() + "', "
                     + "'" + bTransporte.getTelefono() + "',"
-                    + "'" + bTransporte.getSitio() + "',"
-                    + "'" + bTransporte.getHora_aten() + "',"
+                    + "'" + bTransporte.getSitio_web()+ "',"
+                    + "'" + bTransporte.getHorario_de_atencion()+ "',"
+                     + "'" + bTransporte.getHorario_de_salida()+ "',"
+                     + "'" + bTransporte.getDestinos()+ "',"
                     + bTransporte.getGeometry().getLatitud() + ", "
                     + bTransporte.getGeometry().getLongitud() + ");";
 
-            //System.out.println(sql);
-            String sql_dest = "";
+        
+          /*  String sql_dest = "";
             for (int i = 0; i < bTransporte.getDestinos().size(); i++) {
                 sql_dest += "INSERT INTO destino( nombre, idtransporte) VALUES ('" + bTransporte.getDestinos().get(i).getNombre() + "', '" + bTransporte.getDestinos().get(i).getIdtransporte() + "');";
             }
             System.out.println(sql);
+            */
             String sql_img = "";
             for (int i = 0; i < bTransporte.getImagenes().size(); i++) {
-                sql_img += "INSERT INTO imagen(url, titulo, decripcion, idproducto) "
+                sql_img += "INSERT INTO imagen(url, idproducto) "
                         + "VALUES ('" + bTransporte.getImagenes().get(i).getUrl()
-                        + "','" + bTransporte.getImagenes().get(i).getTitulo()
-                        + "','" + bTransporte.getImagenes().get(i).getDescripcion()
                         + "', '" + bTransporte.getImagenes().get(i).getIdproducto() + "');";
             }
-            sql = sql + sql_img + sql_dest;
-            System.out.println("SQL" + sql);
+            sql = sql + sql_img;
+            System.out.println("SQL===========: " + sql);
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
             /*pstmt.executeQuery();

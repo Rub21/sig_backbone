@@ -80,18 +80,18 @@ public class SRegistrarComplementario extends HttpServlet {
         try {
             //Datos Producto
             bComplementario.setIdproducto(idproducto);
-            bComplementario.setNombre(mrequest.getParameter("name"));
+            bComplementario.setNombre(mrequest.getParameter("nombre"));
             bComplementario.setClase(clase);
             bComplementario.setEstado(estado);
 
             //Complementario
             bComplementario.setIdcomplementario(idcomplementario);
-            bComplementario.setTipo(mrequest.getParameter("type"));
-            bComplementario.setDescripcion(mrequest.getParameter("description"));
-            bComplementario.setDireccion(mrequest.getParameter("direction"));
-            bComplementario.setTelefono(mrequest.getParameter("phone"));
-            bComplementario.setSitio(mrequest.getParameter("site"));
-            bComplementario.setHora_aten(mrequest.getParameter("opening_hours"));
+            bComplementario.setTipo(mrequest.getParameter("tipo"));
+            bComplementario.setDescripcion(mrequest.getParameter("descripcion"));
+            bComplementario.setDireccion(mrequest.getParameter("direccion"));
+            bComplementario.setTelefono(mrequest.getParameter("telefono"));
+            bComplementario.setSitio_web(mrequest.getParameter("sitio_web"));
+            bComplementario.setHorario_de_atencion(mrequest.getParameter("horario_de_atencion"));
 
             // Geometry            
             bGeometry.setLatitud(Double.parseDouble(mrequest.getParameter("lat")));
@@ -113,8 +113,7 @@ public class SRegistrarComplementario extends HttpServlet {
                 //Fill bImagen
                 //bImagen.setId(id);
                 bImagen.setUrl(nombreImagen);
-                bImagen.setTitulo(mrequest.getParameter("title_img" + i));
-                bImagen.setDescripcion(mrequest.getParameter("description_img" + i));
+                
                 bImagen.setIdproducto(idproducto);
 
                 ((UploadFile) mrequest.getFiles().get("file" + i)).setFileName(nombreImagen);
@@ -125,9 +124,10 @@ public class SRegistrarComplementario extends HttpServlet {
             }
 
             bComplementario.setImagenes(listImagenes);
+            bComplementario.print();
             managerComplementario.registrartransporte(bComplementario);
-            sesion.setAttribute("conf", "conf");
-            response.sendRedirect("admin/registrar.jsp");
+            
+            response.sendRedirect("admin/confirm.html");
         } catch (Exception ex) {
             request.setAttribute("message", "There was an error: " + ex.getMessage());
             System.out.println("Error" + ex.getMessage());
